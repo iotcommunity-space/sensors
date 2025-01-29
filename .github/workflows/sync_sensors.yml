@@ -1,41 +1,49 @@
-name: Sync Sensors Data
+name: Sync Sensors
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily
-  workflow_dispatch:      # Allows manual trigger
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   sync-sensors:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Ensure full history for safe Git operations
+          fetch-depth: 0  # Ensures full git history for proper commits
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install Dependencies
-        run: |
-          pip install requests PyGithub beautifulsoup4 openai
+      - name: Install dependencies
+        run: pip install requests PyGithub beautifulsoup4 openai
 
-      - name: Sync Sensor Data
+      - name: Run sync script
         env:
-          SENSOR_TOKEN: ${{ secrets.SENSOR_TOKEN }}
-          AC_TOKEN: ${{ secrets.AC_TOKEN }}
+          CODEC_TOKEN: ${{ secrets.SENSOR_TOKEN }}
         run: python .github/scripts/sync_sensors.py
 
-      - name: Commit and Push Changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.SENSOR_TOKEN }}
+      - name: Upload generated files as artifacts
+        uses: actions/upload-artifact@v3
+        if: always()  # Upload artifacts even if the job fails
+        with:
+          name: generated-files
+          path: |
+            path/to/generated/files/*.md
+            path/to/generated/files/*.json
+          retention-days: 7  # Optional: Set retention period for artifacts
+
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "Auto-sync sensors.json and overview.md"
-          git push origin main
+          git diff --cached --quiet || (git pull --rebase origin main && git commit -m "Auto-sync sensors.json and overview.md" && git push origin main)
