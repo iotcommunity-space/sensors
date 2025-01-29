@@ -12265,5 +12265,125 @@
     "Cost": "Moderate",
     "Vendor": "TTN Smart Sensor (Yosensi)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/yosensi/yo-360-01.png"
+  },
+  "ABEEWAY Compact Tracker - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ABEEWAY - Compact-Tracker (v1.0.0).",
+    "Vendor": "ABEEWAY",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/abeeway/compact-tracker/v1.0.0/assets/logo.png"
+  },
+  "ABEEWAY Industrial Tracker - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ABEEWAY - Industrial-Tracker (v1.0.0).",
+    "Vendor": "ABEEWAY",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/abeeway/industrial-tracker/v1.0.0/assets/logo.png"
+  },
+  "ABEEWAY Micro Tracker - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ABEEWAY - Micro-Tracker (v1.0.0).",
+    "Vendor": "ABEEWAY",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/abeeway/micro-tracker/v1.0.0/assets/logo.png"
+  },
+  "ABEEWAY Smart Badge - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ABEEWAY - Smart-Badge (v1.0.0).",
+    "Vendor": "ABEEWAY",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/abeeway/smart-badge/v1.0.0/assets/logo.png"
+  },
+  "ABS-TELEMETRIA Cel Io - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ABS-TELEMETRIA - Cel-Io (v1.0.0).",
+    "Vendor": "ABS-TELEMETRIA",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/abs-telemetria/cel-io/v1.0.0/assets/logo.png"
+  },
+  "ACTILITY Custom Actility - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ACTILITY - Custom-Actility (v1.0.0).",
+    "Vendor": "ACTILITY",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/actility/custom-actility/v1.0.0/assets/logo.png"
+  },
+  "ADENUIS Analog And Power - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADENUIS - Analog-And-Power (v1.0.0).",
+    "Vendor": "ADENUIS",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/analog-and-power/v1.0.0/assets/logo.png"
+  },
+  "ADENUIS Comfort - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADENUIS - Comfort (v1.0.0).",
+    "Vendor": "ADENUIS",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/comfort/v1.0.0/assets/logo.png"
+  },
+  "ADENUIS Dry Contacts - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADENUIS - Dry-Contacts (v1.0.0).",
+    "Vendor": "ADENUIS",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/dry-contacts/v1.0.0/assets/logo.png"
+  },
+  "ADENUIS Lorawan Field Test - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADENUIS - Lorawan-Field-Test (v1.0.0).",
+    "Vendor": "ADENUIS",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/lorawan-field-test/v1.0.0/assets/logo.png"
+  },
+  "ADENUIS Pulse - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADENUIS - Pulse (v1.0.0).",
+    "Vendor": "ADENUIS",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/pulse/v1.0.0/assets/logo.png"
+  },
+  "ADENUIS Temperature - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADENUIS - Temperature (v1.0.0).",
+    "Vendor": "ADENUIS",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/temperature/v1.0.0/assets/logo.png"
+  },
+  "ADVANTECH Wise 2410 - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADVANTECH - Wise-2410 (v1.0.0).",
+    "Vendor": "ADVANTECH",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/advantech/wise-2410/v1.0.0/assets/logo.png"
+  },
+  "ADVANTECH Wise 2410X - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ADVANTECH - Wise-2410X (v1.0.0).",
+    "Vendor": "ADVANTECH",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/advantech/wise-2410x/v1.0.0/assets/logo.png"
+  },
+  "ATIM Dind160 - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ATIM - Dind160 (v1.0.0).",
+    "Vendor": "ATIM",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/atim/dind160/v1.0.0/assets/logo.png"
+  },
+  "ATIM Dind21 - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ATIM - Dind21 (v1.0.0).",
+    "Vendor": "ATIM",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/atim/dind21/v1.0.0/assets/logo.png"
+  },
+  "ATIM Dind44 - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ATIM - Dind44 (v1.0.0).",
+    "Vendor": "ATIM",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/atim/dind44/v1.0.0/assets/logo.png"
+  },
+  "ATIM Dind80 - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ATIM - Dind80 (v1.0.0).",
+    "Vendor": "ATIM",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/atim/dind80/v1.0.0/assets/logo.png"
+  },
+  "ATIM Dind88 - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ATIM - Dind88 (v1.0.0).",
+    "Vendor": "ATIM",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/atim/dind88/v1.0.0/assets/logo.png"
+  },
+  "ATIM Dinda - LoRaWAN IoT Sensor": {
+    "Description": "Codec for ATIM - Dinda (v1.0.0).",
+    "Vendor": "ATIM",
+    "TechnicalSpecs": {},
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/atim/dinda/v1.0.0/assets/logo.png"
   }
 }
