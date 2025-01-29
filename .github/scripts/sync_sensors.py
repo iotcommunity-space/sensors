@@ -6,10 +6,11 @@ from openai import OpenAI
 from bs4 import BeautifulSoup
 from github import Github
 
-# GitHub Setup
 GITHUB_REPO = "iotcommunity-space/sensors"
 SENSOR_TOKEN = os.getenv("SENSOR_TOKEN")  # GitHub Secret
 AC_TOKEN = os.getenv("AC_TOKEN")  # ChatGPT API Key
+
+HEADERS = {"Authorization": f"token {SENSOR_TOKEN}"}
 
 # Source URLs
 CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/main/assets/codecs.json"
@@ -19,7 +20,7 @@ SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
 
-# Initialize GitHub & OpenAI clients
+# Initialize GitHub 
 github = Github(SENSOR_TOKEN)
 repo = github.get_repo(GITHUB_REPO)
 AC_TOKEN = os.getenv("AC_TOKEN")
@@ -124,7 +125,8 @@ def generate_overview(sensor_name, vendor, output_path):
     """Generate a detailed technical overview using GPT-4"""
     prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
 
-    response = openai_client.chat.completions.create(
+	openai.api_key = AC_TOKEN
+    response = openai.chat.completions.create(
         model="gpt-4-turbo",
         messages=[
             {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
