@@ -29,22 +29,23 @@ SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors
 # Paths
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
+CACHE_PATH = "assets/cache.json"  # Store API responses to avoid redundant requests
 
 
-def get_sensor_hash(sensor_data):
-    """Generate stable hash for sensor metadata"""
-    return hashlib.sha256(json.dumps(sensor_data, sort_keys=True).encode()).hexdigest()
+def get_md5_hash(sensor_data):
+    """Generate an MD5 hash for sensor metadata to track changes efficiently."""
+    return hashlib.md5(json.dumps(sensor_data, sort_keys=True).encode()).hexdigest()
 
 
 def needs_update(sensor_folder, current_hash):
-    """Check if the sensor needs AI processing"""
-    hash_file = os.path.join(sensor_folder, "metadata.sha256")
+    """Check if the sensor metadata has changed and needs an update."""
+    hash_file = os.path.join(sensor_folder, "metadata.md5")
 
     if not os.path.exists(sensor_folder):  # New sensor
         return True
     if os.path.exists(os.path.join(sensor_folder, "manual.flag")):  # Manual flag means no update
         return False
-    if not os.path.exists(hash_file):  # No hash file = process it
+    if not os.path.exists(hash_file):  # No hash file = needs update
         return True
 
     with open(hash_file, "r") as f:
@@ -52,7 +53,7 @@ def needs_update(sensor_folder, current_hash):
 
 
 def scrape_sensor_details(sensor_name, vendor):
-    """Scrape manufacturer website for official sensor description"""
+    """Scrape manufacturer website for official sensor description to reduce API usage."""
     search_url = f"https://www.google.com/search?q={sensor_name}+{vendor}+datasheet"
     headers = {"User-Agent": "Mozilla/5.0"}
 
@@ -63,12 +64,12 @@ def scrape_sensor_details(sensor_name, vendor):
         if meta_description:
             return meta_description["content"]
     except Exception as e:
-        print(f"Web scraping failed for {sensor_name}: {e}")
+        print(f"⚠️ Web scraping failed for {sensor_name}: {e}")
         return None
 
 
 def generate_detailed_name(codec):
-    """Generate a meaningful and detailed sensor name"""
+    """Generate a meaningful and detailed sensor name."""
     vendor = codec["name"].split(" - ")[0]
     model = codec["name"].split(" - ")[-1]
 
@@ -86,16 +87,30 @@ def generate_detailed_name(codec):
     return f"{vendor} {model} - {category}"
 
 
-def process_sensor(codec, sensors_data, existing_sensors):
-    """Process a single sensor and update metadata"""
+def load_cache():
+    """Load cached OpenAI responses from disk to prevent redundant API calls."""
+    if os.path.exists(CACHE_PATH):
+        with open(CACHE_PATH, "r") as f:
+            return json.load(f)
+    return {}
+
+
+def save_cache(cache):
+    """Save cached OpenAI responses to disk."""
+    with open(CACHE_PATH, "w") as f:
+        json.dump(cache, f, indent=2)
+
+
+def process_sensor(codec, sensors_data, existing_sensors, cache):
+    """Process a single sensor and update metadata only if needed."""
     detailed_name = generate_detailed_name(codec)
     vendor_name = codec["name"].split(" - ")[0]
     sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, detailed_name, "en")
     overview_path = os.path.join(sensor_folder, "overview.md")
-    hash_file_path = os.path.join(sensor_folder, "metadata.sha256")
+    hash_file_path = os.path.join(sensor_folder, "metadata.md5")
 
     if os.path.exists(os.path.join(sensor_folder, "manual.flag")):
-        print(f"Skipping manual entry: {detailed_name}")
+        print(f"⚠️ Skipping manual entry: {detailed_name}")
         return
 
     sensor_entry = {
@@ -105,14 +120,14 @@ def process_sensor(codec, sensors_data, existing_sensors):
         "imageUrl": codec.get("image", None)
     }
 
-    current_hash = get_sensor_hash(sensor_entry)
+    current_hash = get_md5_hash(sensor_entry)
 
     if not needs_update(sensor_folder, current_hash):
-        print(f"No changes detected: {detailed_name}")
+        print(f"✅ No changes detected: {detailed_name}")
         return
 
-    print(f"Processing: {detailed_name}")
-    generate_overview(detailed_name, vendor_name, overview_path)
+    print(f"🚀 Processing: {detailed_name}")
+    generate_overview(detailed_name, vendor_name, overview_path, cache)
 
     os.makedirs(sensor_folder, exist_ok=True)
     with open(hash_file_path, "w") as f:
@@ -123,31 +138,43 @@ def process_sensor(codec, sensors_data, existing_sensors):
         existing_sensors.add(detailed_name)
 
 
-def generate_overview(sensor_name, vendor, output_path):
-    """Generate a detailed technical overview using GPT-4"""
+def generate_overview(sensor_name, vendor, output_path, cache):
+    """Generate a detailed technical overview using GPT-4, but avoid redundant API calls."""
+    
+    # ✅ Skip API request if overview.md already exists
+    if os.path.exists(output_path):
+        print(f"⚠️ Skipping OpenAI API call: overview.md already exists for {sensor_name}")
+        return
 
-    # ✅ Ensure the directory exists before writing
+    # ✅ Check cache before making an API call
+    cache_key = f"{sensor_name}-{vendor}"
+    if cache_key in cache:
+        print(f"⚠️ Using cached OpenAI response for {sensor_name}")
+        response_text = cache[cache_key]
+    else:
+        prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
+
+        response = openai_client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[
+                {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        response_text = response.choices[0].message.content
+        cache[cache_key] = response_text
+        save_cache(cache)
+
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-    prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
-
-    response = openai_client.chat.completions.create(
-        model="gpt-4-turbo",
-        messages=[
-            {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-
     with open(output_path, "w") as f:
-        f.write(response.choices[0].message.content)
+        f.write(response_text)
 
     print(f"✅ Successfully wrote overview.md for {sensor_name} at {output_path}")
 
 
-
 def commit_to_github(file_path, commit_message):
-    """Commit changes to GitHub"""
+    """Commit changes to GitHub."""
     try:
         contents = repo.get_contents(file_path)
         repo.update_file(file_path, commit_message, open(file_path, "r").read(), contents.sha)
@@ -158,21 +185,19 @@ def commit_to_github(file_path, commit_message):
 # Main Execution
 if __name__ == "__main__":
     try:
-        # Load existing data
         sensors_data = requests.get(SENSORS_JSON_URL).json() or {}
         codecs_data = requests.get(CODECS_JSON_URL).json()
-
-        # Process only the first 20 sensors for testing
         existing_sensors = set(sensors_data.keys())
-        for codec in codecs_data[:20]:  # Only first 20 for testing
-            process_sensor(codec, sensors_data, existing_sensors)
+        cache = load_cache()
 
-        # Save updated data
+        for codec in codecs_data[:20]:  # Process first 20 for testing
+            process_sensor(codec, sensors_data, existing_sensors, cache)
+
         with open(SENSORS_JSON_PATH, "w") as f:
             json.dump(sensors_data, f, indent=2)
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"❌ Error: {e}")
     finally:
         commit_to_github(SENSORS_JSON_PATH, "Updated sensors.json with new verified entries.")
-        print("Updated sensors.json and generated detailed overview.md files where necessary.")
+        print("🎯 Completed: sensors.json and overview.md files updated when necessary.")
