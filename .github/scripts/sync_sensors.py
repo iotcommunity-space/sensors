@@ -1,7 +1,7 @@
 import os
 import json
 import requests
-import openai
+from openai import OpenAI
 from bs4 import BeautifulSoup
 from github import Github
 
@@ -53,6 +53,9 @@ def scrape_sensor_details(sensor_name, vendor):
     except:
         return None
 
+# Initialize OpenAI client
+client = OpenAI(api_key=AC_TOKEN)
+
 # Process Each Sensor
 for codec in codecs_data:
     sensor_name = codec["name"].split(" - ")[-1]
@@ -94,14 +97,13 @@ for codec in codecs_data:
         print(f"Generating overview.md for {sensor_name}...")
 
         # ChatGPT API Request (Updated)
-        openai.api_key = AC_TOKEN
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4-turbo",
             messages=[{"role": "system", "content": "You are a professional technical writer."},
                       {"role": "user", "content": f"Generate an extremely detailed technical overview for the {sensor_name} sensor from {vendor_name}. Include: working principles, installation, LoRaWAN protocol details, power consumption, use cases, challenges, and comparisons."}]
         )
 
-        overview_content = response.choices[0].message["content"]
+        overview_content = response.choices[0].message.content
 
         # Write overview.md
         with open(overview_md_path, "w") as md_file:
