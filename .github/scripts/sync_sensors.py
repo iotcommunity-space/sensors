@@ -125,7 +125,7 @@ def generate_overview(sensor_name, vendor, output_path):
     """Generate a detailed technical overview using GPT-4"""
     prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
 
-	openai.api_key = AC_TOKEN
+openai.api_key = AC_TOKEN
     response = openai.chat.completions.create(
         model="gpt-4-turbo",
         messages=[
