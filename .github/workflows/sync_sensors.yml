@@ -28,8 +28,8 @@ jobs:
 
       - name: Run sync script
         env:
-          CODEC_TOKEN: ${{ secrets.SENSOR_TOKEN }}
-          SENSOR_TOKEN: ${{ secrets.SENSOR_TOKEN }}  # GitHub Repo Token
+          AC_TOKEN: ${{ secrets.AC_TOKEN }}  
+          SENSOR_TOKEN: ${{ secrets.SENSOR_TOKEN }}
 
         run: python .github/scripts/sync_sensors.py
 
