@@ -6,11 +6,21 @@ from openai import OpenAI
 from bs4 import BeautifulSoup
 from github import Github
 
+# GitHub Setup
 GITHUB_REPO = "iotcommunity-space/sensors"
-SENSOR_TOKEN = os.getenv("SENSOR_TOKEN")  # GitHub Secret
-AC_TOKEN = os.getenv("AC_TOKEN")  # ChatGPT API Key
+SENSOR_TOKEN = os.getenv("SENSOR_TOKEN")  # GitHub Token for Repo Access
+AC_TOKEN = os.getenv("AC_TOKEN")  # OpenAI API Key
 
-HEADERS = {"Authorization": f"token {SENSOR_TOKEN}"}
+# Verify API Keys
+if not SENSOR_TOKEN:
+    raise ValueError("Missing GitHub API key! Check your GitHub Secrets.")
+if not AC_TOKEN:
+    raise ValueError("Missing OpenAI API key! Check your GitHub Secrets.")
+
+# Initialize GitHub & OpenAI Clients
+github = Github(SENSOR_TOKEN)
+repo = github.get_repo(GITHUB_REPO)
+openai_client = OpenAI(api_key=AC_TOKEN)
 
 # Source URLs
 CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/main/assets/codecs.json"
@@ -20,36 +30,26 @@ SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
 
-# Initialize GitHub 
-github = Github(SENSOR_TOKEN)
-repo = github.get_repo(GITHUB_REPO)
-AC_TOKEN = os.getenv("AC_TOKEN")
-
-if not AC_TOKEN:
-    raise ValueError("Missing OpenAI API key! Please check your GitHub Secrets.")
-
-openai_client = OpenAI(api_key=AC_TOKEN)
-
 
 def get_sensor_hash(sensor_data):
     """Generate stable hash for sensor metadata"""
-    return hashlib.sha256(
-        json.dumps(sensor_data, sort_keys=True).encode()
-    ).hexdigest()
+    return hashlib.sha256(json.dumps(sensor_data, sort_keys=True).encode()).hexdigest()
+
 
 def needs_update(sensor_folder, current_hash):
     """Check if the sensor needs AI processing"""
     hash_file = os.path.join(sensor_folder, "metadata.sha256")
 
     if not os.path.exists(sensor_folder):  # New sensor
-        return True  
+        return True
     if os.path.exists(os.path.join(sensor_folder, "manual.flag")):  # Manual flag means no update
-        return False  
+        return False
     if not os.path.exists(hash_file):  # No hash file = process it
-        return True  
+        return True
 
     with open(hash_file, "r") as f:
         return f.read().strip() != current_hash
+
 
 def scrape_sensor_details(sensor_name, vendor):
     """Scrape manufacturer website for official sensor description"""
@@ -59,13 +59,13 @@ def scrape_sensor_details(sensor_name, vendor):
     try:
         response = requests.get(search_url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.text, "html.parser")
-
         meta_description = soup.find("meta", attrs={"name": "description"})
         if meta_description:
             return meta_description["content"]
     except Exception as e:
         print(f"Web scraping failed for {sensor_name}: {e}")
         return None
+
 
 def generate_detailed_name(codec):
     """Generate a meaningful and detailed sensor name"""
@@ -85,9 +85,10 @@ def generate_detailed_name(codec):
     category = next((v for k, v in category_keywords.items() if k in model), "LoRaWAN IoT Sensor")
     return f"{vendor} {model} - {category}"
 
+
 def process_sensor(codec, sensors_data, existing_sensors):
     """Process a single sensor and update metadata"""
-    detailed_name = generate_detailed_name(codec)  # Generate better name
+    detailed_name = generate_detailed_name(codec)
     vendor_name = codec["name"].split(" - ")[0]
     sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, detailed_name, "en")
     overview_path = os.path.join(sensor_folder, "overview.md")
@@ -121,12 +122,12 @@ def process_sensor(codec, sensors_data, existing_sensors):
         sensors_data[detailed_name] = sensor_entry
         existing_sensors.add(detailed_name)
 
+
 def generate_overview(sensor_name, vendor, output_path):
     """Generate a detailed technical overview using GPT-4"""
     prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
 
-openai.api_key = AC_TOKEN
-    response = openai.chat.completions.create(
+    response = openai_client.chat.completions.create(
         model="gpt-4-turbo",
         messages=[
             {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
@@ -137,6 +138,7 @@ openai.api_key = AC_TOKEN
     with open(output_path, "w") as f:
         f.write(response.choices[0].message.content)
 
+
 def commit_to_github(file_path, commit_message):
     """Commit changes to GitHub"""
     try:
@@ -144,6 +146,7 @@ def commit_to_github(file_path, commit_message):
         repo.update_file(file_path, commit_message, open(file_path, "r").read(), contents.sha)
     except:
         repo.create_file(file_path, commit_message, open(file_path, "r").read())
+
 
 # Main Execution
 if __name__ == "__main__":
@@ -154,7 +157,7 @@ if __name__ == "__main__":
 
         # Process only the first 20 sensors for testing
         existing_sensors = set(sensors_data.keys())
-        for codec in codecs_data[:20]:  
+        for codec in codecs_data[:20]:  # Only first 20 for testing
             process_sensor(codec, sensors_data, existing_sensors)
 
         # Save updated data
