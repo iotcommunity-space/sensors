@@ -93,27 +93,15 @@ for codec in codecs_data:
     if not os.path.exists(overview_md_path):
         print(f"Generating overview.md for {sensor_name}...")
 
-        # ChatGPT API Prompt
-        prompt = f"""
-        Generate an **extremely detailed technical overview** for the **{sensor_name} sensor** from {vendor_name}.
-        
-        1️⃣ **Description:** {sensor_entry["Description"]}
-        2️⃣ **How It Works** (technical principles)
-        3️⃣ **Installation & Deployment** (mounting, configuration, network setup)
-        4️⃣ **Communication Protocols** (LoRaWAN frequencies, supported regions)
-        5️⃣ **Power Consumption & Battery Life**
-        6️⃣ **Best Use Cases & Real-World Applications**
-        7️⃣ **Comparisons to Similar Models**
-        8️⃣ **Potential Challenges & Troubleshooting Tips**
-        """
-
+        # ChatGPT API Request (Updated)
         openai.api_key = AC_TOKEN
         response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}]
+            model="gpt-4-turbo",
+            messages=[{"role": "system", "content": "You are a professional technical writer."},
+                      {"role": "user", "content": f"Generate an extremely detailed technical overview for the {sensor_name} sensor from {vendor_name}. Include: working principles, installation, LoRaWAN protocol details, power consumption, use cases, challenges, and comparisons."}]
         )
 
-        overview_content = response["choices"][0]["message"]["content"]
+        overview_content = response.choices[0].message["content"]
 
         # Write overview.md
         with open(overview_md_path, "w") as md_file:
