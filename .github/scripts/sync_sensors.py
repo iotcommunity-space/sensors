@@ -29,13 +29,11 @@ SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors
 # Paths
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
-CACHE_PATH = "assets/cache.json"  # Store API responses to avoid redundant requests
-
+CACHE_PATH = "assets/cached_overviews.json"  # Cache OpenAI responses
 
 def get_md5_hash(sensor_data):
     """Generate an MD5 hash for sensor metadata to track changes efficiently."""
     return hashlib.md5(json.dumps(sensor_data, sort_keys=True).encode()).hexdigest()
-
 
 def needs_update(sensor_folder, current_hash):
     """Check if the sensor metadata has changed and needs an update."""
@@ -51,42 +49,6 @@ def needs_update(sensor_folder, current_hash):
     with open(hash_file, "r") as f:
         return f.read().strip() != current_hash
 
-
-def scrape_sensor_details(sensor_name, vendor):
-    """Scrape manufacturer website for official sensor description to reduce API usage."""
-    search_url = f"https://www.google.com/search?q={sensor_name}+{vendor}+datasheet"
-    headers = {"User-Agent": "Mozilla/5.0"}
-
-    try:
-        response = requests.get(search_url, headers=headers, timeout=10)
-        soup = BeautifulSoup(response.text, "html.parser")
-        meta_description = soup.find("meta", attrs={"name": "description"})
-        if meta_description:
-            return meta_description["content"]
-    except Exception as e:
-        print(f"⚠️ Web scraping failed for {sensor_name}: {e}")
-        return None
-
-
-def generate_detailed_name(codec):
-    """Generate a meaningful and detailed sensor name."""
-    vendor = codec["name"].split(" - ")[0]
-    model = codec["name"].split(" - ")[-1]
-
-    category_keywords = {
-        "LHT": "LoRaWAN Temperature & Humidity Sensor",
-        "Dus": "Industrial Pressure Sensor",
-        "Fms": "Smart Flow Meter",
-        "Pds": "Differential Pressure Sensor",
-        "Plc": "Wireless Level Sensor",
-        "WQS": "Water Quality Monitoring Sensor",
-        "LWL": "Water Leak Detector"
-    }
-
-    category = next((v for k, v in category_keywords.items() if k in model), "LoRaWAN IoT Sensor")
-    return f"{vendor} {model} - {category}"
-
-
 def load_cache():
     """Load cached OpenAI responses from disk to prevent redundant API calls."""
     if os.path.exists(CACHE_PATH):
@@ -94,16 +56,14 @@ def load_cache():
             return json.load(f)
     return {}
 
-
 def save_cache(cache):
     """Save cached OpenAI responses to disk."""
     with open(CACHE_PATH, "w") as f:
         json.dump(cache, f, indent=2)
 
-
 def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
-    detailed_name = generate_detailed_name(codec)
+    detailed_name = codec["name"]
     vendor_name = codec["name"].split(" - ")[0]
     sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, detailed_name, "en")
     overview_path = os.path.join(sensor_folder, "overview.md")
@@ -114,7 +74,7 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
         return
 
     sensor_entry = {
-        "Description": codec.get("description") or scrape_sensor_details(detailed_name, vendor_name),
+        "Description": codec.get("description"),
         "Vendor": vendor_name,
         "TechnicalSpecs": codec.get("specs", {}),
         "imageUrl": codec.get("image", None)
@@ -137,31 +97,51 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
         sensors_data[detailed_name] = sensor_entry
         existing_sensors.add(detailed_name)
 
+def batch_generate_overviews(sensor_list, cache):
+    """Generate multiple overviews in a single OpenAI API call to reduce costs."""
+    batch_prompts = []
+    batch_keys = []
+
+    for sensor in sensor_list:
+        key = f"{sensor['name']}-{sensor['vendor']}"
+        if key in cache:
+            print(f"⚡ Using cached overview for {sensor['name']}")
+            continue
+        prompt = f"Write a technical overview for {sensor['name']} ({sensor['vendor']}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
+        batch_prompts.append({"role": "user", "content": prompt})
+        batch_keys.append(key)
+
+    if not batch_prompts:
+        return  # Nothing to process
+
+    response = openai_client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
+    )
+
+    for i, sensor_response in enumerate(response.choices):
+        cache[batch_keys[i]] = sensor_response.message.content
+        save_cache(cache)
 
 def generate_overview(sensor_name, vendor, output_path, cache):
-    """Generate a detailed technical overview using GPT-4, but avoid redundant API calls."""
+    """Generate a detailed technical overview using GPT-4o, but avoid redundant API calls."""
     
-    # ✅ Skip API request if overview.md already exists
     if os.path.exists(output_path):
         print(f"⚠️ Skipping OpenAI API call: overview.md already exists for {sensor_name}")
         return
 
-    # ✅ Check cache before making an API call
     cache_key = f"{sensor_name}-{vendor}"
     if cache_key in cache:
-        print(f"⚠️ Using cached OpenAI response for {sensor_name}")
+        print(f"⚡ Using cached OpenAI response for {sensor_name}")
         response_text = cache[cache_key]
     else:
+        print(f"🚀 Calling OpenAI API for {sensor_name}")
         prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
-
         response = openai_client.chat.completions.create(
-            model="gpt-4-turbo",
-            messages=[
-                {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
-                {"role": "user", "content": prompt}
-            ]
+            model="gpt-4o",
+            messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
+                      {"role": "user", "content": prompt}]
         )
-
         response_text = response.choices[0].message.content
         cache[cache_key] = response_text
         save_cache(cache)
@@ -172,7 +152,6 @@ def generate_overview(sensor_name, vendor, output_path, cache):
 
     print(f"✅ Successfully wrote overview.md for {sensor_name} at {output_path}")
 
-
 def commit_to_github(file_path, commit_message):
     """Commit changes to GitHub."""
     try:
@@ -180,7 +159,6 @@ def commit_to_github(file_path, commit_message):
         repo.update_file(file_path, commit_message, open(file_path, "r").read(), contents.sha)
     except:
         repo.create_file(file_path, commit_message, open(file_path, "r").read())
-
 
 # Main Execution
 if __name__ == "__main__":
@@ -190,8 +168,12 @@ if __name__ == "__main__":
         existing_sensors = set(sensors_data.keys())
         cache = load_cache()
 
-        for codec in codecs_data[:20]:  # Process first 20 for testing
+        # Process all sensors (not just 20)
+        for codec in codecs_data:
             process_sensor(codec, sensors_data, existing_sensors, cache)
+
+        # Batch process all remaining sensors for overview generation
+        batch_generate_overviews(codecs_data, cache)
 
         with open(SENSORS_JSON_PATH, "w") as f:
             json.dump(sensors_data, f, indent=2)
