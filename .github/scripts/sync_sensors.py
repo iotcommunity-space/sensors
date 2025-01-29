@@ -22,7 +22,7 @@ SENSORS_ASSETS_PATH = "assets/sensors"
 # Initialize GitHub & OpenAI clients
 github = Github(SENSOR_TOKEN)
 repo = github.get_repo(GITHUB_REPO)
-openai_client = OpenAI(api_key=AC_TOKEN)
+openai_client = OpenAI(api_key=os.getenv("AC_TOKEN"))
 
 def get_sensor_hash(sensor_data):
     """Generate stable hash for sensor metadata"""
