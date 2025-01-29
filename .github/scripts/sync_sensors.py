@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import hashlib
 from openai import OpenAI
 from bs4 import BeautifulSoup
 from github import Github
@@ -10,117 +11,150 @@ GITHUB_REPO = "iotcommunity-space/sensors"
 SENSOR_TOKEN = os.getenv("SENSOR_TOKEN")  # GitHub Secret
 AC_TOKEN = os.getenv("AC_TOKEN")  # ChatGPT API Key
 
-# GitHub Headers
-HEADERS = {"Authorization": f"token {SENSOR_TOKEN}"}
-
 # Source URLs
-CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs.json"
-SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors/refs/heads/main/assets/sensors.json"
+CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/main/assets/codecs.json"
+SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors/main/assets/sensors.json"
 
 # Paths
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
 
-# Initialize GitHub
+# Initialize GitHub & OpenAI clients
 github = Github(SENSOR_TOKEN)
 repo = github.get_repo(GITHUB_REPO)
+openai_client = OpenAI(api_key=AC_TOKEN)
 
-# Load Existing sensors.json
-try:
-    sensors_data = requests.get(SENSORS_JSON_URL).json()
-except:
-    sensors_data = {}
+def get_sensor_hash(sensor_data):
+    """Generate stable hash for sensor metadata"""
+    return hashlib.sha256(
+        json.dumps(sensor_data, sort_keys=True).encode()
+    ).hexdigest()
 
-# Fetch codecs.json
-codecs_data = requests.get(CODECS_JSON_URL).json()
+def needs_update(sensor_folder, current_hash):
+    """Check if the sensor needs AI processing"""
+    hash_file = os.path.join(sensor_folder, "metadata.sha256")
 
-# Ensure Unique Sensors
-existing_sensors = set(sensors_data.keys())
+    if not os.path.exists(sensor_folder):  # New sensor
+        return True  
+    if os.path.exists(os.path.join(sensor_folder, "manual.flag")):  # Manual flag means no update
+        return False  
+    if not os.path.exists(hash_file):  # No hash file = process it
+        return True  
 
-# Scraper for Manufacturer Data
+    with open(hash_file, "r") as f:
+        return f.read().strip() != current_hash
+
 def scrape_sensor_details(sensor_name, vendor):
+    """Scrape manufacturer website for official sensor description"""
     search_url = f"https://www.google.com/search?q={sensor_name}+{vendor}+datasheet"
     headers = {"User-Agent": "Mozilla/5.0"}
-    
+
     try:
         response = requests.get(search_url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.text, "html.parser")
 
-        # Extract possible description from meta tags
         meta_description = soup.find("meta", attrs={"name": "description"})
         if meta_description:
             return meta_description["content"]
-    except:
+    except Exception as e:
+        print(f"Web scraping failed for {sensor_name}: {e}")
         return None
 
-# Initialize OpenAI client
-client = OpenAI(api_key=AC_TOKEN)
+def generate_detailed_name(codec):
+    """Generate a meaningful and detailed sensor name"""
+    vendor = codec["name"].split(" - ")[0]
+    model = codec["name"].split(" - ")[-1]
 
-# Process Each Sensor
-for codec in codecs_data:
-    sensor_name = codec["name"].split(" - ")[-1]
-    vendor_name = codec["name"].split(" - ")[0]
-    sensor_folder = f"{SENSORS_ASSETS_PATH}/{vendor_name}/{sensor_name}/en"
-    overview_md_path = f"{sensor_folder}/overview.md"
-
-    # If manually added, do not modify
-    if os.path.exists(sensor_folder):
-        print(f"Manual entry detected: {sensor_name} - Skipping modification.")
-        continue
-
-    # Fetch Manufacturer Data
-    manufacturer_description = scrape_sensor_details(sensor_name, vendor_name) or "No official description found."
-
-    # Prepare Sensor Metadata
-    sensor_entry = {
-        "Description": codec.get("description", manufacturer_description),
-        "Communication": "LoRaWAN",
-        "Applications": ["IoT", "Industrial", "Smart Monitoring"],
-        "Environmental Compatibility": "Indoor/Outdoor",
-        "Data Formats": ["JSON", "MQTT"],
-        "Technology": "LoRaWAN End Node",
-        "Cost": "Moderate",
-        "Vendor": vendor_name,
-        "imageUrl": codec.get("image", None),
+    category_keywords = {
+        "LHT": "LoRaWAN Temperature & Humidity Sensor",
+        "Dus": "Industrial Pressure Sensor",
+        "Fms": "Smart Flow Meter",
+        "Pds": "Differential Pressure Sensor",
+        "Plc": "Wireless Level Sensor",
+        "WQS": "Water Quality Monitoring Sensor",
+        "LWL": "Water Leak Detector"
     }
 
-    # Store in sensors.json if missing
-    if sensor_name not in existing_sensors:
-        sensors_data[sensor_name] = sensor_entry
-        existing_sensors.add(sensor_name)
+    category = next((v for k, v in category_keywords.items() if k in model), "LoRaWAN IoT Sensor")
+    return f"{vendor} {model} - {category}"
 
-    # Create Sensor Folder
+def process_sensor(codec, sensors_data, existing_sensors):
+    """Process a single sensor and update metadata"""
+    detailed_name = generate_detailed_name(codec)  # Generate better name
+    vendor_name = codec["name"].split(" - ")[0]
+    sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, detailed_name, "en")
+    overview_path = os.path.join(sensor_folder, "overview.md")
+    hash_file_path = os.path.join(sensor_folder, "metadata.sha256")
+
+    if os.path.exists(os.path.join(sensor_folder, "manual.flag")):
+        print(f"Skipping manual entry: {detailed_name}")
+        return
+
+    sensor_entry = {
+        "Description": codec.get("description") or scrape_sensor_details(detailed_name, vendor_name),
+        "Vendor": vendor_name,
+        "TechnicalSpecs": codec.get("specs", {}),
+        "imageUrl": codec.get("image", None)
+    }
+
+    current_hash = get_sensor_hash(sensor_entry)
+
+    if not needs_update(sensor_folder, current_hash):
+        print(f"No changes detected: {detailed_name}")
+        return
+
+    print(f"Processing: {detailed_name}")
+    generate_overview(detailed_name, vendor_name, overview_path)
+
     os.makedirs(sensor_folder, exist_ok=True)
+    with open(hash_file_path, "w") as f:
+        f.write(current_hash)
 
-    # Generate overview.md if missing
-    if not os.path.exists(overview_md_path):
-        print(f"Generating overview.md for {sensor_name}...")
+    if detailed_name not in existing_sensors:
+        sensors_data[detailed_name] = sensor_entry
+        existing_sensors.add(detailed_name)
 
-        # ChatGPT API Request (Updated)
-        response = client.chat.completions.create(
-            model="gpt-4-turbo",
-            messages=[{"role": "system", "content": "You are a professional technical writer."},
-                      {"role": "user", "content": f"Generate an extremely detailed technical overview for the {sensor_name} sensor from {vendor_name}. Include: working principles, installation, LoRaWAN protocol details, power consumption, use cases, challenges, and comparisons."}]
-        )
+def generate_overview(sensor_name, vendor, output_path):
+    """Generate a detailed technical overview using GPT-4"""
+    prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
 
-        overview_content = response.choices[0].message.content
+    response = openai_client.chat.completions.create(
+        model="gpt-4-turbo",
+        messages=[
+            {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
+            {"role": "user", "content": prompt}
+        ]
+    )
 
-        # Write overview.md
-        with open(overview_md_path, "w") as md_file:
-            md_file.write(overview_content)
+    with open(output_path, "w") as f:
+        f.write(response.choices[0].message.content)
 
-# Save Updated sensors.json
-with open(SENSORS_JSON_PATH, "w") as f:
-    json.dump(sensors_data, f, indent=2)
-
-# Commit Changes
 def commit_to_github(file_path, commit_message):
+    """Commit changes to GitHub"""
     try:
         contents = repo.get_contents(file_path)
         repo.update_file(file_path, commit_message, open(file_path, "r").read(), contents.sha)
     except:
         repo.create_file(file_path, commit_message, open(file_path, "r").read())
 
-commit_to_github(SENSORS_JSON_PATH, "Updated sensors.json with new verified entries.")
+# Main Execution
+if __name__ == "__main__":
+    try:
+        # Load existing data
+        sensors_data = requests.get(SENSORS_JSON_URL).json() or {}
+        codecs_data = requests.get(CODECS_JSON_URL).json()
 
-print("Updated sensors.json and generated detailed overview.md files.")
+        # Process only the first 20 sensors for testing
+        existing_sensors = set(sensors_data.keys())
+        for codec in codecs_data[:20]:  
+            process_sensor(codec, sensors_data, existing_sensors)
+
+        # Save updated data
+        with open(SENSORS_JSON_PATH, "w") as f:
+            json.dump(sensors_data, f, indent=2)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        commit_to_github(SENSORS_JSON_PATH, "Updated sensors.json with new verified entries.")
+        print("Updated sensors.json and generated detailed overview.md files where necessary.")
