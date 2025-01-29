@@ -125,6 +125,10 @@ def process_sensor(codec, sensors_data, existing_sensors):
 
 def generate_overview(sensor_name, vendor, output_path):
     """Generate a detailed technical overview using GPT-4"""
+
+    # ✅ Ensure the directory exists before writing
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
     prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
 
     response = openai_client.chat.completions.create(
@@ -137,6 +141,9 @@ def generate_overview(sensor_name, vendor, output_path):
 
     with open(output_path, "w") as f:
         f.write(response.choices[0].message.content)
+
+    print(f"✅ Successfully wrote overview.md for {sensor_name} at {output_path}")
+
 
 
 def commit_to_github(file_path, commit_message):
