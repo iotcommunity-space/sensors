@@ -3,6 +3,7 @@ import json
 import requests
 import hashlib
 import re
+import shutil
 from openai import OpenAI
 from github import Github
 
@@ -71,7 +72,7 @@ def save_cache(cache):
 def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
     detailed_name = codec["name"]
-    vendor_name = codec.get("vendor") or codec.get("Vendor", "Unknown Vendor")
+    vendor_name = codec["name"].split(" - ")[0]
     sensor_slug = generate_slug(detailed_name)  # Generate a slug for the sensor
     sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, sensor_slug, "en")
     overview_path = os.path.join(sensor_folder, "overview.md")
@@ -102,9 +103,9 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     with open(hash_file_path, "w") as f:
         f.write(current_hash)
 
-    # Always update the sensor entry in sensors_data, even if it already exists
-    sensors_data[detailed_name] = sensor_entry
-    existing_sensors.add(detailed_name)
+    if detailed_name not in existing_sensors:
+        sensors_data[detailed_name] = sensor_entry
+        existing_sensors.add(detailed_name)
 
 def batch_generate_overviews(sensor_list, cache):
     """Generate multiple overviews in a single OpenAI API call to reduce costs."""
@@ -168,6 +169,29 @@ def commit_to_github(file_path, commit_message):
     except:
         repo.create_file(file_path, commit_message, open(file_path, "r").read())
 
+def cleanup_old_folders(sensors_data):
+    """Delete folders with old naming conventions that are no longer in use."""
+    vendor_folders = os.listdir(SENSORS_ASSETS_PATH)
+    for vendor in vendor_folders:
+        vendor_path = os.path.join(SENSORS_ASSETS_PATH, vendor)
+        if not os.path.isdir(vendor_path):
+            continue
+
+        sensor_folders = os.listdir(vendor_path)
+        for sensor_folder in sensor_folders:
+            sensor_path = os.path.join(vendor_path, sensor_folder)
+            if not os.path.isdir(sensor_path):
+                continue
+
+            # Check if the folder name matches any slug in sensors_data
+            is_used = any(
+                sensor["slug"] == sensor_folder for sensor in sensors_data.values()
+            )
+
+            if not is_used:
+                print(f"🗑️ Deleting unused folder: {sensor_path}")
+                shutil.rmtree(sensor_path)
+
 # Main Execution
 if __name__ == "__main__":
     try:
@@ -182,6 +206,9 @@ if __name__ == "__main__":
 
         # Batch process all remaining sensors for overview generation
         batch_generate_overviews(codecs_data, cache)
+
+        # Clean up old folders
+        cleanup_old_folders(sensors_data)
 
         with open(SENSORS_JSON_PATH, "w") as f:
             json.dump(sensors_data, f, indent=2)
