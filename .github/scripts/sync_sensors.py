@@ -17,7 +17,6 @@ AC_TOKEN = os.getenv("AC_TOKEN")         # OpenAI API Key
 
 if not SENSOR_TOKEN:
     raise ValueError("Missing GitHub API key! Check your GitHub Secrets.")
-
 if not AC_TOKEN:
     raise ValueError("Missing OpenAI API key! Check your GitHub Secrets.")
 
@@ -38,14 +37,22 @@ CACHE_PATH = "assets/cached_overviews.json"  # Cache for GPT responses
 # Helper Functions
 ########################################################
 
-def slugify(text: str) -> str:
+def folder_name(text: str) -> str:
     """
-    Convert a sensor's 'name' to a slug suitable for filenames and JSON keys.
-    Example: 'MILESIGHT - Em300 Mcs' -> 'milesight-em300-mcs'
+    Transform the sensor name into a folder-friendly string:
+    - Preserve uppercase letters
+    - Remove characters except letters, digits, spaces, and dashes
+    - Replace runs of whitespace with a single dash
+    - Merge multiple dashes into one
+    - Trim leading/trailing dashes
+    
+    e.g. "MILESIGHT - Em300 Mcs" -> "MILESIGHT-Em300-Mcs"
     """
-    text = text.lower()
-    text = text.replace(" ", "-")
-    text = re.sub(r"[^a-z0-9-]+", "", text)
+    # Keep letters, digits, spaces, and dashes
+    text = re.sub(r"[^A-Za-z0-9\s-]+", "", text)
+    # Replace runs of whitespace with a single dash
+    text = re.sub(r"\s+", "-", text)
+    # Merge multiple dashes into one
     text = re.sub(r"-+", "-", text)
     return text.strip("-")
 
@@ -95,18 +102,18 @@ def save_cache(cache):
     with open(CACHE_PATH, "w") as f:
         json.dump(cache, f, indent=2)
 
-def generate_overview(slug: str, sensor_folder: str, sensor_name: str, vendor: str, cache: dict):
+def generate_overview(folder_str: str, sensor_folder: str, sensor_name: str, vendor: str, cache: dict):
     """
-    Call GPT to generate an overview.md, skipping if one exists.
+    Call GPT to generate an overview.md, skipping if one exists already.
     """
     overview_path = os.path.join(sensor_folder, "overview.md")
     if os.path.exists(overview_path):
-        print(f"⚠️ Skipping GPT call for {slug}: overview.md already exists.")
+        print(f"⚠️ Skipping GPT call for {folder_str}: overview.md already exists.")
         return
 
-    cache_key = f"{slug}"
+    cache_key = folder_str
     if cache_key in cache:
-        print(f"⚡ Using cached GPT response for {slug}")
+        print(f"⚡ Using cached GPT response for {folder_str}")
         response_text = cache[cache_key]
     else:
         print(f"🚀 Calling OpenAI API for {sensor_name}")
@@ -135,7 +142,7 @@ def generate_overview(slug: str, sensor_folder: str, sensor_name: str, vendor: s
     with open(overview_path, "w") as f:
         f.write(response_text)
 
-    print(f"✅ Created overview.md for {slug}")
+    print(f"✅ Created overview.md for {folder_str}")
 
 ########################################################
 # Main Logic
@@ -147,51 +154,59 @@ def main():
     resp.raise_for_status()
     codecs_data = resp.json()
 
+    # We'll collect sensor info in a big dict
     sensors_data = {}
 
-    # Create the sensors folder if it doesn’t exist
+    # Make sure our sensors root folder exists
     os.makedirs(SENSORS_ASSETS_PATH, exist_ok=True)
 
-    # Load GPT cache
+    # GPT caching
     cache = load_cache()
 
     for codec in codecs_data:
-        raw_name = codec["name"]  # e.g. "MILESIGHT - Em300 Mcs"
-        slug = slugify(raw_name)  # e.g. "milesight-em300-mcs"
+        raw_name = codec.get("name", "Unnamed Sensor")
+        folder_str = folder_name(raw_name)  # e.g. "MILESIGHT-Em300-Mcs"
 
-        sensor_folder = os.path.join(SENSORS_ASSETS_PATH, slug, "en")
+        # Build folder path: assets/sensors/<FolderStr>/en/
+        sensor_folder = os.path.join(SENSORS_ASSETS_PATH, folder_str, "en")
         os.makedirs(sensor_folder, exist_ok=True)
 
+        # Build the sensor data object with your specified fields:
         sensor_entry = {
-            "name": raw_name,
-            "description": codec.get("description", ""),
-            "vendor": codec.get("vendor", ""),
-            "technology": codec.get("technology", ""),
+            "Name": raw_name,
+            "Description": codec.get("description", ""),
+            "Communication": codec.get("Communication", ""),
+            "Applications": codec.get("Applications", []),
+            "Environmental Compatibility": codec.get("Environmental Compatibility", ""),
+            "Data Formats": codec.get("Data Formats", []),
+            "Technology": codec.get("technology", ""),
+            "Cost": codec.get("Cost", ""),
+            "Vendor": codec.get("vendor", ""),
             "imageUrl": codec.get("image", None),
         }
 
-        # Write a metadata.md5 so we can track changes
+        # Write metadata.md5
         metadata_hash = get_md5_hash(sensor_entry)
         hash_file_path = os.path.join(sensor_folder, "metadata.md5")
         with open(hash_file_path, "w") as f:
             f.write(metadata_hash)
 
-        # Add to sensors_data
-        sensors_data[slug] = sensor_entry
+        # Insert into big sensors_data under folder_str
+        sensors_data[folder_str] = sensor_entry
 
-        # Generate a GPT-based overview if missing
-        generate_overview(slug, sensor_folder, raw_name, sensor_entry["vendor"], cache)
+        # Generate or skip GPT-based overview
+        generate_overview(folder_str, sensor_folder, raw_name, sensor_entry["Vendor"], cache)
 
-    # Write final sensors.json
+    # Save the final sensors.json
     with open(SENSORS_JSON_PATH, "w") as f:
         json.dump(sensors_data, f, indent=2)
 
-    # Commit changes to GitHub
+    # Commit to GitHub
     commit_to_github(
         file_path=SENSORS_JSON_PATH,
-        commit_message="Rebuilt slug-based sensors.json with GPT-based overview.md files"
+        commit_message="Rebuilt sensors.json with friendly folder names, extra fields, and GPT overviews"
     )
-    print("✅ Done! Created slug-based sensors.json and overview.md for new sensors.")
+    print("✅ Done! Created sensors.json and overview.md for sensors with your letter-casing and fields.")
 
 if __name__ == "__main__":
     main()
