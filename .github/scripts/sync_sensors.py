@@ -2,8 +2,8 @@ import os
 import json
 import requests
 import hashlib
+import re
 from openai import OpenAI
-from bs4 import BeautifulSoup
 from github import Github
 
 # GitHub Setup
@@ -30,6 +30,13 @@ SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
 CACHE_PATH = "assets/cached_overviews.json"  # Cache OpenAI responses
+
+# Slug Generation Function
+def generate_slug(name):
+    """Generate a URL-friendly slug from the sensor name."""
+    slug = re.sub(r"[^\w\s-]", "", name.lower())  # Remove special characters
+    slug = re.sub(r"[\s-]+", "-", slug)  # Replace spaces and multiple hyphens with a single hyphen
+    return slug.strip("-")
 
 def get_md5_hash(sensor_data):
     """Generate an MD5 hash for sensor metadata to track changes efficiently."""
@@ -65,7 +72,8 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
     detailed_name = codec["name"]
     vendor_name = codec["name"].split(" - ")[0]
-    sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, detailed_name, "en")
+    sensor_slug = generate_slug(detailed_name)  # Generate a slug for the sensor
+    sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, sensor_slug, "en")
     overview_path = os.path.join(sensor_folder, "overview.md")
     hash_file_path = os.path.join(sensor_folder, "metadata.md5")
 
@@ -77,7 +85,8 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
         "Description": codec.get("description"),
         "Vendor": vendor_name,
         "TechnicalSpecs": codec.get("specs", {}),
-        "imageUrl": codec.get("image", None)
+        "imageUrl": codec.get("image", None),
+        "slug": sensor_slug  # Add slug to the sensor entry
     }
 
     current_hash = get_md5_hash(sensor_entry)
@@ -125,7 +134,6 @@ def batch_generate_overviews(sensor_list, cache):
 
 def generate_overview(sensor_name, vendor, output_path, cache):
     """Generate a detailed technical overview using GPT-4o, but avoid redundant API calls."""
-    
     if os.path.exists(output_path):
         print(f"⚠️ Skipping OpenAI API call: overview.md already exists for {sensor_name}")
         return
