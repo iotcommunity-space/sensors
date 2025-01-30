@@ -102,9 +102,9 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     with open(hash_file_path, "w") as f:
         f.write(current_hash)
 
-    if detailed_name not in existing_sensors:
-        sensors_data[detailed_name] = sensor_entry
-        existing_sensors.add(detailed_name)
+    # Always update the sensor entry in sensors_data, even if it already exists
+    sensors_data[detailed_name] = sensor_entry
+    existing_sensors.add(detailed_name)
 
 def batch_generate_overviews(sensor_list, cache):
     """Generate multiple overviews in a single OpenAI API call to reduce costs."""
