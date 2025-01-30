@@ -71,7 +71,7 @@ def save_cache(cache):
 def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
     detailed_name = codec["name"]
-    vendor_name = codec["name"].split(" - ")[0]
+    vendor_name = codec.get("vendor") or codec.get("Vendor", "Unknown Vendor")
     sensor_slug = generate_slug(detailed_name)  # Generate a slug for the sensor
     sensor_folder = os.path.join(SENSORS_ASSETS_PATH, vendor_name, sensor_slug, "en")
     overview_path = os.path.join(sensor_folder, "overview.md")
