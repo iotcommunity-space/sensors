@@ -4,23 +4,23 @@ import requests
 import hashlib
 import re
 from github import Github
-# from openai import OpenAI  # Commented out as OpenAI is no longer used
+from openai import OpenAI  # Ensure you have OpenAI installed and configured
 
 # GitHub Setup
 GITHUB_REPO = "iotcommunity-space/sensors"
 SENSOR_TOKEN = os.getenv("SENSOR_TOKEN")  # GitHub Token for Repo Access
-# AC_TOKEN = os.getenv("AC_TOKEN")  # OpenAI API Key (No longer needed)
+AC_TOKEN = os.getenv("AC_TOKEN")  # OpenAI API Key
 
 # Verify API Keys
 if not SENSOR_TOKEN:
     raise ValueError("Missing GitHub API key! Check your GitHub Secrets.")
-# if not AC_TOKEN:
-#     raise ValueError("Missing OpenAI API key! Check your GitHub Secrets.")  # Not needed
+if not AC_TOKEN:
+    raise ValueError("Missing OpenAI API key! Check your GitHub Secrets.")
 
 # Initialize GitHub & OpenAI Clients
 github = Github(SENSOR_TOKEN)
 repo = github.get_repo(GITHUB_REPO)
-# client = OpenAI(api_key=AC_TOKEN)  # Commented out
+client = OpenAI(api_key=AC_TOKEN)  # Initialize OpenAI client
 
 # Source URLs
 CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/main/assets/codecs.json"
@@ -29,7 +29,7 @@ SENSORS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/sensors
 # Paths
 SENSORS_JSON_PATH = "assets/sensors.json"
 SENSORS_ASSETS_PATH = "assets/sensors"
-# CACHE_PATH = "assets/cached_overviews.json"  # No longer needed
+CACHE_PATH = "assets/cached_overviews.json"  # Cache OpenAI responses
 
 def generate_slug(text):
     """Generate a slug from text by converting to lowercase, replacing spaces with '-', and removing special characters."""
@@ -59,19 +59,19 @@ def needs_update(sensor_folder, current_hash):
             return True
     return False
 
-# def load_cache():
-#     """Load cached OpenAI responses from disk to prevent redundant API calls."""
-#     if os.path.exists(CACHE_PATH):
-#         with open(CACHE_PATH, "r") as f:
-#             return json.load(f)
-#     return {}
+def load_cache():
+    """Load cached OpenAI responses from disk to prevent redundant API calls."""
+    if os.path.exists(CACHE_PATH):
+        with open(CACHE_PATH, "r") as f:
+            return json.load(f)
+    return {}
 
-# def save_cache(cache):
-#     """Save cached OpenAI responses to disk."""
-#     with open(CACHE_PATH, "w") as f:
-#         json.dump(cache, f, indent=2)
+def save_cache(cache):
+    """Save cached OpenAI responses to disk."""
+    with open(CACHE_PATH, "w") as f:
+        json.dump(cache, f, indent=2)
 
-def process_sensor(codec, sensors_data, existing_sensors):
+def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
     detailed_name = codec.get("name", "").strip()
     if not detailed_name:
@@ -113,9 +113,7 @@ def process_sensor(codec, sensors_data, existing_sensors):
         return
 
     print(f"🚀 Processing: {detailed_name}")
-
-    # Generate overview.md without OpenAI
-    generate_overview(detailed_name, vendor_name, overview_path, sensor_entry)
+    generate_overview(detailed_name, vendor_name, overview_path, cache)
 
     os.makedirs(sensor_folder, exist_ok=True)
     with open(hash_file_path, "w") as f:
@@ -128,29 +126,66 @@ def process_sensor(codec, sensors_data, existing_sensors):
         # Update existing sensor entry
         sensors_data[detailed_name].update(sensor_entry)
 
-def generate_overview(sensor_name, vendor, output_path, sensor_entry):
-    """Generate a detailed technical overview without using OpenAI."""
+def batch_generate_overviews(sensor_list, cache):
+    """Generate multiple overviews in a single OpenAI API call to reduce costs."""
+    batch_prompts = []
+    batch_keys = []
+
+    for sensor in sensor_list:
+        key = f"{sensor['name']}-{sensor['vendor']}"
+        if key in cache:
+            print(f"⚡ Using cached overview for {sensor['name']}")
+            continue
+        prompt = (
+            f"Write a technical overview for {sensor['name']} ({sensor['vendor']}). "
+            "Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
+        )
+        batch_prompts.append({"role": "user", "content": prompt})
+        batch_keys.append(key)
+
+    if not batch_prompts:
+        return  # Nothing to process
+
+    response = client.chat.completions.create(
+        model="GPT-4o mini",
+        messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
+    )
+
+    for i, sensor_response in enumerate(response.choices):
+        cache[batch_keys[i]] = sensor_response.message.content
+    save_cache(cache)
+
+def generate_overview(sensor_name, vendor, output_path, cache):
+    """Generate a detailed technical overview using GPT-4, but avoid redundant API calls."""
+    
     if os.path.exists(output_path):
-        print(f"⚠️ Skipping overview.md creation: Already exists for {sensor_name}")
+        print(f"⚠️ Skipping OpenAI API call: overview.md already exists for {sensor_name}")
         return
 
-    # Use the Description as the overview content or provide a placeholder
-    overview_content = sensor_entry["Description"]
-
-    # Optionally, you can structure the overview using other fields
-    overview_content += f"\n\n**Vendor:** {vendor}\n\n"
-    overview_content += f"**Communication:** {sensor_entry['Communication']}\n\n"
-    overview_content += f"**Applications:** {', '.join(sensor_entry['Applications']) if sensor_entry['Applications'] else 'N/A'}\n\n"
-    overview_content += f"**Environmental Compatibility:** {sensor_entry['Environmental Compatibility']}\n\n"
-    overview_content += f"**Data Formats:** {', '.join(sensor_entry['Data Formats'])}\n\n"
-    overview_content += f"**Technology:** {sensor_entry['Technology']}\n\n"
-    overview_content += f"**Cost:** {sensor_entry['Cost']}\n\n"
-    if sensor_entry["imageUrl"]:
-        overview_content += f"![Sensor Image]({sensor_entry['imageUrl']})\n"
+    cache_key = f"{sensor_name}-{vendor}"
+    if cache_key in cache:
+        print(f"⚡ Using cached OpenAI response for {sensor_name}")
+        response_text = cache[cache_key]
+    else:
+        print(f"🚀 Calling OpenAI API for {sensor_name}")
+        prompt = (
+            f"Write a technical overview for {sensor_name} ({vendor}). "
+            "Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
+        )
+        response = client.chat.completions.create(
+            model="GPT-4o mini",
+            messages=[
+                {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        response_text = response.choices[0].message.content
+        cache[cache_key] = response_text
+        save_cache(cache)
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w") as f:
-        f.write(overview_content)
+        f.write(response_text)
 
     print(f"✅ Successfully wrote overview.md for {sensor_name} at {output_path}")
 
@@ -186,10 +221,17 @@ if __name__ == "__main__":
 
         existing_sensors = set(sensors_data.keys())
 
+        print("🗄️ Loading cache...")
+        cache = load_cache()
+
         # Process all sensors
         print("🛠️ Processing sensors...")
         for codec in codecs_data:
-            process_sensor(codec, sensors_data, existing_sensors)
+            process_sensor(codec, sensors_data, existing_sensors, cache)
+
+        # Batch process all remaining sensors for overview generation
+        print("📄 Batch generating overviews...")
+        batch_generate_overviews(codecs_data, cache)
 
         # Save updated sensors.json
         print("📄 Writing sensors.json...")
