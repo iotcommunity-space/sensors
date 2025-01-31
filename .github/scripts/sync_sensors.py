@@ -5,7 +5,7 @@ import hashlib
 import re
 import traceback
 from github import Github, GithubException
-from openai import OpenAI  # Updated import for OpenAI >=1.0.0
+from openai import OpenAI  # Ensure you have the correct OpenAI client
 import logging
 
 # Setup Logging
@@ -76,8 +76,11 @@ def save_cache(cache):
 
 def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
-    detailed_name = codec["name"]
-    vendor_name = codec["name"].split(" - ")[0]
+    detailed_name = codec.get("name")
+    if not detailed_name:
+        logging.warning("⚠️ Missing 'name' in codec. Skipping entry.")
+        return
+    vendor_name = detailed_name.split(" - ")[0]
 
     # Generate slugs for vendor and sensor names
     vendor_slug = generate_slug(vendor_name)
@@ -89,20 +92,17 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     hash_file_path = os.path.join(sensor_folder, "metadata.md5")
 
     if os.path.exists(os.path.join(sensor_folder, "manual.flag")):
-        print(f"⚠️ Skipping manual entry: {detailed_name}")
+        logging.warning(f"⚠️ Skipping manual entry: {detailed_name}")
         return
 
-    # Extract specs from codec data
-    specs = codec.get("specs", {})
-    
     sensor_entry = {
-        "Description": codec.get("description", ""),
-        "Communication": specs.get("Communication", "LoRaWAN"),  # Default to LoRaWAN if missing
-        "Applications": specs.get("Applications", []),
-        "Environmental Compatibility": specs.get("Environmental Compatibility", "Indoor and outdoor use"),
-        "Data Formats": specs.get("Data Formats", ["JSON", "MQTT"]),
-        "Technology": specs.get("Technology", "LoRaWAN End node"),
-        "Cost": specs.get("Cost", "Affordable"),
+        "Description": codec.get("description", "No description provided."),
+        "Communication": codec.get("communication", "Unknown"),
+        "Applications": codec.get("applications", []),
+        "Environmental Compatibility": codec.get("environmental_compatibility", "Unknown"),
+        "Data Formats": codec.get("data_formats", []),
+        "Technology": codec.get("technology", "Unknown"),
+        "Cost": codec.get("cost", "Unknown"),
         "Vendor": vendor_name,
         "imageUrl": codec.get("image", None),
         "slug": sensor_slug
@@ -111,10 +111,10 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     current_hash = get_md5_hash(sensor_entry)
 
     if not needs_update(sensor_folder, current_hash):
-        print(f"✅ No changes detected: {detailed_name}")
+        logging.info(f"✅ No changes detected: {detailed_name}")
         return
 
-    print(f"🚀 Processing: {detailed_name}")
+    logging.info(f"🚀 Processing: {detailed_name}")
     generate_overview(detailed_name, vendor_name, overview_path, cache)
 
     os.makedirs(sensor_folder, exist_ok=True)
@@ -144,7 +144,7 @@ def batch_generate_overviews(sensor_list, cache):
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o mini",
+            model="gpt-4",
             messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
         )
 
@@ -171,7 +171,7 @@ def generate_overview(sensor_name, vendor, output_path, cache):
         prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
         try:
             response = client.chat.completions.create(
-                model="gpt-4o mini",
+                model="gpt-4",
                 messages=[
                     {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
                     {"role": "user", "content": prompt}
@@ -222,11 +222,11 @@ if __name__ == "__main__":
         cache = load_cache()
 
         # Process all sensors
-        for codec in codecs_data.values():
+        for codec in codecs_data:
             process_sensor(codec, sensors_data, existing_sensors, cache)
 
         # Batch process all remaining sensors for overview generation
-        batch_generate_overviews(codecs_data.values(), cache)
+        batch_generate_overviews(codecs_data, cache)
 
         with open(SENSORS_JSON_PATH, "w") as f:
             json.dump(sensors_data, f, indent=2)
