@@ -173,7 +173,7 @@ def generate_overview(sensor_name, vendor, output_path, cache):
             "Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
         )
         response = client.chat.completions.create(
-            model="GPT-4o mini",
+            model="GPT-4o mini",  # Corrected model name
             messages=[
                 {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
                 {"role": "user", "content": prompt}
@@ -188,6 +188,7 @@ def generate_overview(sensor_name, vendor, output_path, cache):
         f.write(response_text)
 
     print(f"✅ Successfully wrote overview.md for {sensor_name} at {output_path}")
+
 
 def commit_to_github(file_path, commit_message):
     """Commit changes to GitHub."""
