@@ -9973,5 +9973,17 @@
     "Vendor": "TTN Smart Sensor (Yosensi)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/yosensi/yo-360-01.png",
     "slug": "ttn-smart-sensor-yosensi"
+  },
+  "POLYSENSE - Externally Connected Sensor ": {
+    "Description": "Codec for POLYSENSE - Externally-Connected-Sensor- (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "POLYSENSE",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/polysense/externally-connected-sensor-/v1.0.0/assets/logo.png",
+    "slug": "polysense---externally-connected-sensor"
   }
 }
