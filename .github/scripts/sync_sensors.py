@@ -76,11 +76,8 @@ def save_cache(cache):
 
 def process_sensor(codec, sensors_data, existing_sensors, cache):
     """Process a single sensor and update metadata only if needed."""
-    detailed_name = codec.get("name")
-    if not detailed_name:
-        logging.warning("⚠️ Missing 'name' in codec. Skipping entry.")
-        return
-    vendor_name = detailed_name.split(" - ")[0]
+    detailed_name = codec["name"]
+    vendor_name = codec["name"].split(" - ")[0]
 
     # Generate slugs for vendor and sensor names
     vendor_slug = generate_slug(vendor_name)
@@ -92,17 +89,20 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     hash_file_path = os.path.join(sensor_folder, "metadata.md5")
 
     if os.path.exists(os.path.join(sensor_folder, "manual.flag")):
-        logging.warning(f"⚠️ Skipping manual entry: {detailed_name}")
+        print(f"⚠️ Skipping manual entry: {detailed_name}")
         return
 
+    # Extract specs from codec data
+    specs = codec.get("specs", {})
+    
     sensor_entry = {
-        "Description": codec.get("description", "No description provided."),
-        "Communication": codec.get("communication", "Unknown"),
-        "Applications": codec.get("applications", []),
-        "Environmental Compatibility": codec.get("environmental_compatibility", "Unknown"),
-        "Data Formats": codec.get("data_formats", []),
-        "Technology": codec.get("technology", "Unknown"),
-        "Cost": codec.get("cost", "Unknown"),
+        "Description": codec.get("description", ""),
+        "Communication": specs.get("Communication", "LoRaWAN"),  # Default to LoRaWAN if missing
+        "Applications": specs.get("Applications", []),
+        "Environmental Compatibility": specs.get("Environmental Compatibility", "Indoor and outdoor use"),
+        "Data Formats": specs.get("Data Formats", ["JSON", "MQTT"]),
+        "Technology": specs.get("Technology", "LoRaWAN End node"),
+        "Cost": specs.get("Cost", "Affordable"),
         "Vendor": vendor_name,
         "imageUrl": codec.get("image", None),
         "slug": sensor_slug
@@ -111,10 +111,10 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
     current_hash = get_md5_hash(sensor_entry)
 
     if not needs_update(sensor_folder, current_hash):
-        logging.info(f"✅ No changes detected: {detailed_name}")
+        print(f"✅ No changes detected: {detailed_name}")
         return
 
-    logging.info(f"🚀 Processing: {detailed_name}")
+    print(f"🚀 Processing: {detailed_name}")
     generate_overview(detailed_name, vendor_name, overview_path, cache)
 
     os.makedirs(sensor_folder, exist_ok=True)
