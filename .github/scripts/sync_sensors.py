@@ -3,9 +3,9 @@ import json
 import requests
 import hashlib
 import re
-import openai
 from bs4 import BeautifulSoup
 from github import Github
+from openai import OpenAI  # Updated import for OpenAI >=1.0.0
 
 # GitHub Setup
 GITHUB_REPO = "iotcommunity-space/sensors"
@@ -21,7 +21,7 @@ if not AC_TOKEN:
 # Initialize GitHub & OpenAI Clients
 github = Github(SENSOR_TOKEN)
 repo = github.get_repo(GITHUB_REPO)
-openai.api_key = AC_TOKEN
+client = OpenAI(api_key=AC_TOKEN)  # Updated OpenAI client initialization
 
 # Source URLs
 CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/main/assets/codecs.json"
@@ -128,10 +128,9 @@ def batch_generate_overviews(sensor_list, cache):
 
     if not batch_prompts:
         return  # Nothing to process
-        
-    client = openai.OpenAI(api_key=AC_TOKEN)
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
+
+    response = client.chat.completions.create(
+        model="gpt-4",
         messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
     )
 
@@ -140,7 +139,7 @@ def batch_generate_overviews(sensor_list, cache):
         save_cache(cache)
 
 def generate_overview(sensor_name, vendor, output_path, cache):
-    """Generate a detailed technical overview using GPT-4o, but avoid redundant API calls."""
+    """Generate a detailed technical overview using GPT-4, but avoid redundant API calls."""
     
     if os.path.exists(output_path):
         print(f"⚠️ Skipping OpenAI API call: overview.md already exists for {sensor_name}")
@@ -153,8 +152,8 @@ def generate_overview(sensor_name, vendor, output_path, cache):
     else:
         print(f"🚀 Calling OpenAI API for {sensor_name}")
         prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
-        response = openai.ChatCompletion.create(
-            model="gpt-4o",
+        response = client.chat.completions.create(
+            model="gpt-4",
             messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
                       {"role": "user", "content": prompt}]
         )
