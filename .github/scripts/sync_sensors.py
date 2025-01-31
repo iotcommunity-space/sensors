@@ -125,36 +125,6 @@ def process_sensor(codec, sensors_data, existing_sensors, cache):
         sensors_data[detailed_name] = sensor_entry
         existing_sensors.add(detailed_name)
 
-def batch_generate_overviews(sensor_list, cache):
-    """Generate multiple overviews in a single OpenAI API call to reduce costs."""
-    batch_prompts = []
-    batch_keys = []
-
-    for sensor in sensor_list:
-        key = f"{sensor.get('name', 'unknown')}-{sensor.get('vendor', 'unknown')}"
-        if key in cache:
-            logging.info(f"⚡ Using cached overview for {sensor.get('name', 'unknown')}")
-            continue
-        prompt = f"Write a technical overview for {sensor.get('name', 'unknown')} ({sensor.get('vendor', 'unknown')}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
-        batch_prompts.append({"role": "user", "content": prompt})
-        batch_keys.append(key)
-
-    if not batch_prompts:
-        return  # Nothing to process
-
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
-        )
-
-        for i, sensor_response in enumerate(response.choices):
-            cache[batch_keys[i]] = sensor_response.message.content
-        save_cache(cache)
-    except Exception as e:
-        logging.error(f"Error during batch_generate_overviews: {e}")
-        traceback.print_exc()
-
 def generate_overview(sensor_name, vendor, output_path, cache):
     """Generate a detailed technical overview using GPT-4, but avoid redundant API calls."""
     
@@ -171,7 +141,7 @@ def generate_overview(sensor_name, vendor, output_path, cache):
         prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
         try:
             response = client.chat.completions.create(
-                model="gpt-4",
+                model="gpt-4o mini",
                 messages=[
                     {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
                     {"role": "user", "content": prompt}
@@ -224,9 +194,6 @@ if __name__ == "__main__":
         # Process all sensors
         for codec in codecs_data:
             process_sensor(codec, sensors_data, existing_sensors, cache)
-
-        # Batch process all remaining sensors for overview generation
-        batch_generate_overviews(codecs_data, cache)
 
         with open(SENSORS_JSON_PATH, "w") as f:
             json.dump(sensors_data, f, indent=2)
