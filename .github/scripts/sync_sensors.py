@@ -3,7 +3,7 @@ import json
 import requests
 import hashlib
 import re
-from openai import OpenAI
+import openai
 from bs4 import BeautifulSoup
 from github import Github
 
@@ -21,7 +21,7 @@ if not AC_TOKEN:
 # Initialize GitHub & OpenAI Clients
 github = Github(SENSOR_TOKEN)
 repo = github.get_repo(GITHUB_REPO)
-openai_client = OpenAI(api_key=AC_TOKEN)
+openai.api_key = AC_TOKEN
 
 # Source URLs
 CODECS_JSON_URL = "https://raw.githubusercontent.com/iotcommunity-space/codec/main/assets/codecs.json"
@@ -129,7 +129,7 @@ def batch_generate_overviews(sensor_list, cache):
     if not batch_prompts:
         return  # Nothing to process
 
-    response = openai_client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4o",
         messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
     )
@@ -152,7 +152,7 @@ def generate_overview(sensor_name, vendor, output_path, cache):
     else:
         print(f"🚀 Calling OpenAI API for {sensor_name}")
         prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
-        response = openai_client.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-4o",
             messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
                       {"role": "user", "content": prompt}]
