@@ -128,7 +128,8 @@ def batch_generate_overviews(sensor_list, cache):
 
     if not batch_prompts:
         return  # Nothing to process
-
+        
+    client = openai.OpenAI(api_key=AC_TOKEN)
     response = openai.ChatCompletion.create(
         model="gpt-4o",
         messages=[{"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."}] + batch_prompts
