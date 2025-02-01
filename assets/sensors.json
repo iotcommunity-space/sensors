@@ -9985,5 +9985,41 @@
     "Vendor": "POLYSENSE",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/polysense/externally-connected-sensor-/v1.0.0/assets/logo.png",
     "slug": "polysense---externally-connected-sensor"
+  },
+  "SIMULATORS - Bus": {
+    "Description": "Codec for SIMULATORS - Bus (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "SIMULATORS",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/simulators/bus/v1.0.0/assets/logo.png",
+    "slug": "simulators---bus"
+  },
+  "SIMULATORS - Freezer": {
+    "Description": "Codec for SIMULATORS - Freezer (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "SIMULATORS",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/simulators/freezer/v1.0.0/assets/logo.png",
+    "slug": "simulators---freezer"
+  },
+  "SIMULATORS - Industrial Automation": {
+    "Description": "Codec for SIMULATORS - Industrial-Automation (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "SIMULATORS",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/simulators/industrial-automation/v1.0.0/assets/logo.png",
+    "slug": "simulators---industrial-automation"
   }
 }
