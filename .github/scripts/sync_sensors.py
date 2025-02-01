@@ -141,7 +141,7 @@ def generate_overview(sensor_name, vendor, output_path, cache):
         prompt = f"Write a technical overview for {sensor_name} ({vendor}). Include working principles, installation guide, LoRaWAN details, power consumption, use cases, and limitations."
         try:
             response = client.chat.completions.create(
-                model="gpt-4o mini",
+                model="gpt-4o",
                 messages=[
                     {"role": "system", "content": "You are a technical IoT expert writing detailed sensor documentation."},
                     {"role": "user", "content": prompt}
