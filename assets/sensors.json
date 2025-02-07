@@ -10021,5 +10021,17 @@
     "Vendor": "SIMULATORS",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/simulators/industrial-automation/v1.0.0/assets/logo.png",
     "slug": "simulators---industrial-automation"
+  },
+  "Uc Series - Uc521": {
+    "Description": "Codec for Uc Series - Uc521.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Uc Series",
+    "imageUrl": null,
+    "slug": "uc-series---uc521"
   }
 }
