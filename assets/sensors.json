@@ -10033,5 +10033,17 @@
     "Vendor": "Uc Series",
     "imageUrl": null,
     "slug": "uc-series---uc521"
+  },
+  "IMST-GMBH - Ioke868": {
+    "Description": "Codec for IMST-GMBH - Ioke868 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "IMST-GMBH",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/imst-gmbh/ioke868/v1.0.0/assets/logo.png",
+    "slug": "imst-gmbh---ioke868"
   }
 }
