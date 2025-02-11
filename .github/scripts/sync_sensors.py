@@ -162,18 +162,30 @@ def generate_overview(sensor_name, vendor, output_path, cache):
     logging.info(f"✅ Successfully wrote overview.md for {sensor_name} at {output_path}")
 
 def commit_to_github(file_path, commit_message):
-    """Commit changes to GitHub."""
+    """Commit changes to GitHub using GitHub Actions bot credentials."""
     try:
         contents = repo.get_contents(file_path)
-        repo.update_file(file_path, commit_message, open(file_path, "r").read(), contents.sha)
-        logging.info(f"✅ Committed changes to {file_path}")
+        repo.update_file(
+            file_path,
+            commit_message,
+            open(file_path, "r").read(),
+            contents.sha,
+            author={"name": "github-actions[bot]", "email": "github-actions[bot]@users.noreply.github.com"}
+        )
+        logging.info(f"✅ Committed changes to {file_path} as github-actions[bot]")
     except GithubException as e:
         if e.status == 404:
-            repo.create_file(file_path, commit_message, open(file_path, "r").read())
-            logging.info(f"✅ Created and committed new file {file_path}")
+            repo.create_file(
+                file_path,
+                commit_message,
+                open(file_path, "r").read(),
+                author={"name": "github-actions[bot]", "email": "github-actions[bot]@users.noreply.github.com"}
+            )
+            logging.info(f"✅ Created and committed new file {file_path} as github-actions[bot]")
         else:
             logging.error(f"❌ GitHub Exception: {e}")
             traceback.print_exc()
+
 
 # Main Execution
 if __name__ == "__main__":
