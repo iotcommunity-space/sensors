@@ -10045,5 +10045,17 @@
     "Vendor": "IMST-GMBH",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/imst-gmbh/ioke868/v1.0.0/assets/logo.png",
     "slug": "imst-gmbh---ioke868"
+  },
+  "DIGI-X-ON - Custom Digi Xon": {
+    "Description": "Codec for DIGI-X-ON - Custom-Digi-Xon (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DIGI-X-ON",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/digi-x-on/custom-digi-xon/v1.0.0/assets/logo.png",
+    "slug": "digi-x-on---custom-digi-xon"
   }
 }
