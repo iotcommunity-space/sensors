@@ -10057,5 +10057,53 @@
     "Vendor": "DIGI-X-ON",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/digi-x-on/custom-digi-xon/v1.0.0/assets/logo.png",
     "slug": "digi-x-on---custom-digi-xon"
+  },
+  "VOLLEY-BOAST - Vobo Gp 1": {
+    "Description": "Codec for VOLLEY-BOAST - Vobo-Gp-1 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VOLLEY-BOAST",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/volley-boast/vobo-gp-1/v1.0.0/assets/logo.png",
+    "slug": "volley-boast---vobo-gp-1"
+  },
+  "VOLLEY-BOAST - Vobo Hl 1": {
+    "Description": "Codec for VOLLEY-BOAST - Vobo-Hl-1 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VOLLEY-BOAST",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/volley-boast/vobo-hl-1/v1.0.0/assets/logo.png",
+    "slug": "volley-boast---vobo-hl-1"
+  },
+  "VOLLEY-BOAST - Vobo Tc": {
+    "Description": "Codec for VOLLEY-BOAST - Vobo-Tc (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VOLLEY-BOAST",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/volley-boast/vobo-tc/v1.0.0/assets/logo.png",
+    "slug": "volley-boast---vobo-tc"
+  },
+  "VOLLEY-BOAST - Vobo Xp": {
+    "Description": "Codec for VOLLEY-BOAST - Vobo-Xp (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VOLLEY-BOAST",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/volley-boast/vobo-xp/v1.0.0/assets/logo.png",
+    "slug": "volley-boast---vobo-xp"
   }
 }
