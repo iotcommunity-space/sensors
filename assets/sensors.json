@@ -10105,5 +10105,17 @@
     "Vendor": "VOLLEY-BOAST",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/volley-boast/vobo-xp/v1.0.0/assets/logo.png",
     "slug": "volley-boast---vobo-xp"
+  },
+  "Vs Series - Vs373": {
+    "Description": "Codec for Vs Series - Vs373.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Vs Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/VS_Series/VS373/VS373.png",
+    "slug": "vs-series---vs373"
   }
 }
