@@ -10117,5 +10117,17 @@
     "Vendor": "Vs Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/VS_Series/VS373/VS373.png",
     "slug": "vs-series---vs373"
+  },
+  "MILESIGHT - Ts30X": {
+    "Description": "Codec for MILESIGHT - Ts30X (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "MILESIGHT",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/ts30x/v1.0.0/assets/logo.png",
+    "slug": "milesight---ts30x"
   }
 }
