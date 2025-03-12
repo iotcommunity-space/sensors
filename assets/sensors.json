@@ -10141,5 +10141,17 @@
     "Vendor": "TTN Smart Sensor (Truvami)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/truvami/tag-l-side.png",
     "slug": "ttn-smart-sensor-truvami"
+  },
+  "Vs Series - Vs370": {
+    "Description": "Codec for Vs Series - Vs370.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Vs Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/VS_Series/VS370/VS370.png",
+    "slug": "vs-series---vs370"
   }
 }
