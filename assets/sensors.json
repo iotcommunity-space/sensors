@@ -10153,5 +10153,17 @@
     "Vendor": "Vs Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/VS_Series/VS370/VS370.png",
     "slug": "vs-series---vs370"
+  },
+  "DRAGINO - Sn50V3 Cb": {
+    "Description": "Codec for DRAGINO - Sn50V3-Cb (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DRAGINO",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/dragino/sn50v3-cb/v1.0.0/assets/logo.png",
+    "slug": "dragino---sn50v3-cb"
   }
 }
