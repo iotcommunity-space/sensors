@@ -10165,5 +10165,17 @@
     "Vendor": "DRAGINO",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/dragino/sn50v3-cb/v1.0.0/assets/logo.png",
     "slug": "dragino---sn50v3-cb"
+  },
+  "TTN Smart Sensor (Tehama)": {
+    "Description": "Codec for Tehama",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Tehama)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/tehama/tehama-pulse-mdt.png",
+    "slug": "ttn-smart-sensor-tehama"
   }
 }
