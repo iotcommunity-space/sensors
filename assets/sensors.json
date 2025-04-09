@@ -10333,5 +10333,41 @@
     "Vendor": "MCLIMATE",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/mclimate/wireless-thermostat/v1.0.0/assets/logo.png",
     "slug": "mclimate---wireless-thermostat"
+  },
+  "DIGI-X-ON - Digi X On Sparkfun Iot Node": {
+    "Description": "Codec for DIGI-X-ON - Digi-X-On-Sparkfun-Iot-Node (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DIGI-X-ON",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/digi-x-on/digi-x-on-sparkfun-iot-node/v1.0.0/assets/logo.png",
+    "slug": "digi-x-on---digi-x-on-sparkfun-iot-node"
+  },
+  "VUTILITY - Hotdrop": {
+    "Description": "Codec for VUTILITY - Hotdrop (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VUTILITY",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/vutility/hotdrop/v1.0.0/assets/logo.png",
+    "slug": "vutility---hotdrop"
+  },
+  "VUTILITY - Voltdrop": {
+    "Description": "Codec for VUTILITY - Voltdrop (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VUTILITY",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/vutility/voltdrop/v1.0.0/assets/logo.png",
+    "slug": "vutility---voltdrop"
   }
 }
