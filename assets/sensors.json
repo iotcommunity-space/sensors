@@ -10369,5 +10369,17 @@
     "Vendor": "VUTILITY",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/vutility/voltdrop/v1.0.0/assets/logo.png",
     "slug": "vutility---voltdrop"
+  },
+  "Gs Series - Gs601": {
+    "Description": "Codec for Gs Series - Gs601.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Gs Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/GS_Series/GS601/GS601.png",
+    "slug": "gs-series---gs601"
   }
 }
