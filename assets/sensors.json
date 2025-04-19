@@ -10381,5 +10381,41 @@
     "Vendor": "Gs Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/GS_Series/GS601/GS601.png",
     "slug": "gs-series---gs601"
+  },
+  "Ct Series - Ct10X": {
+    "Description": "Codec for Ct Series - Ct10X.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/CT_Series/CT10x/CT101_CT103.png",
+    "slug": "ct-series---ct10x"
+  },
+  "Ct Series - Ct3Xx": {
+    "Description": "Codec for Ct Series - Ct3Xx.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/CT_Series/CT3xx/CT303_CT305.png",
+    "slug": "ct-series---ct3xx"
+  },
+  "Ts Series - Ts201 V2": {
+    "Description": "Codec for Ts Series - Ts201 V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ts Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/TS_Series/TS201_v2/TS201_v2.png",
+    "slug": "ts-series---ts201-v2"
   }
 }
