@@ -10417,5 +10417,53 @@
     "Vendor": "Ts Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/TS_Series/TS201_v2/TS201_v2.png",
     "slug": "ts-series---ts201-v2"
+  },
+  "Ws Series - Ws50X Cn": {
+    "Description": "Codec for Ws Series - Ws50X Cn.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WS_Series/WS50x_CN/WS50x_CN.png",
+    "slug": "ws-series---ws50x-cn"
+  },
+  "Ws Series - Ws50X Eu": {
+    "Description": "Codec for Ws Series - Ws50X Eu.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WS_Series/WS50x_EU/WS50x_EU.png",
+    "slug": "ws-series---ws50x-eu"
+  },
+  "Ws Series - Ws50X Us": {
+    "Description": "Codec for Ws Series - Ws50X Us.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WS_Series/WS50x_US/WS50x_US.png",
+    "slug": "ws-series---ws50x-us"
+  },
+  "Wt Series - Wt201 V2": {
+    "Description": "Codec for Wt Series - Wt201 V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Wt Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WT_Series/WT201_v2/WT201_v2.png",
+    "slug": "wt-series---wt201-v2"
   }
 }
