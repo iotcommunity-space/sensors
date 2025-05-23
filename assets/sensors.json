@@ -10465,5 +10465,17 @@
     "Vendor": "Wt Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WT_Series/WT201_v2/WT201_v2.png",
     "slug": "wt-series---wt201-v2"
+  },
+  "TTN Smart Sensor (Ezurio)": {
+    "Description": "Codec for Ezurio",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Ezurio)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/ezurio/rs1xx-ext-sensor.png",
+    "slug": "ttn-smart-sensor-ezurio"
   }
 }
