@@ -10477,5 +10477,29 @@
     "Vendor": "TTN Smart Sensor (Ezurio)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/ezurio/rs1xx-ext-sensor.png",
     "slug": "ttn-smart-sensor-ezurio"
+  },
+  "NETVOX - Ra02G": {
+    "Description": "Codec for NETVOX - Ra02G (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "NETVOX",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/netvox/ra02g/v1.0.0/assets/logo.jpg",
+    "slug": "netvox---ra02g"
+  },
+  "TTN Smart Sensor (Radionode)": {
+    "Description": "Codec for Radionode",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Radionode)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/radionode/radionode_logo.png",
+    "slug": "ttn-smart-sensor-radionode"
   }
 }
