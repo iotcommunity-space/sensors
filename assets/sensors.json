@@ -10501,5 +10501,17 @@
     "Vendor": "TTN Smart Sensor (Radionode)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/radionode/radionode_logo.png",
     "slug": "ttn-smart-sensor-radionode"
+  },
+  "Uc Series - Uc100 V2": {
+    "Description": "Codec for Uc Series - Uc100 V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Uc Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/UC_Series/UC100_v2/UC100.png",
+    "slug": "uc-series---uc100-v2"
   }
 }
