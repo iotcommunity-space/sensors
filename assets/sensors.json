@@ -10513,5 +10513,29 @@
     "Vendor": "Uc Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/UC_Series/UC100_v2/UC100.png",
     "slug": "uc-series---uc100-v2"
+  },
+  "Wt Series - Wt301 Wt302": {
+    "Description": "Codec for Wt Series - Wt301 Wt302.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Wt Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WT_Series/WT301_WT302/WT30x.png",
+    "slug": "wt-series---wt301-wt302"
+  },
+  "Wt Series - Wt303 Wt304": {
+    "Description": "Codec for Wt Series - Wt303 Wt304.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Wt Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WT_Series/WT303_WT304/WT30x.png",
+    "slug": "wt-series---wt303-wt304"
   }
 }
