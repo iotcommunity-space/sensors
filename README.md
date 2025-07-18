@@ -6,6 +6,8 @@ This repository serves as the primary data store for the IoT Community sensors d
 
 The IoT Community Sensors Directory is a comprehensive database of IoT sensors and companion devices used across various IoT projects and implementations. This repository maintains the data structure and information that powers the directory website.
 
+**🤖 Automated Data Sync**: This repository automatically syncs sensor data from our codec registry daily, ensuring up-to-date information while preserving manual corrections.
+
 ## Data Structure
 
 The sensor data is stored in a single `sensors.json` file with the following structure:
@@ -21,7 +23,8 @@ The sensor data is stored in a single `sensors.json` file with the following str
     "Technology": "Underlying technologies",
     "Cost": "Cost category",
     "Vendor": "Manufacturer name",
-    "imageUrl": "URL to sensor image (optional)"
+    "imageUrl": "URL to sensor image (optional)",
+    "slug": "auto-generated-slug"
   }
 }
 ```
@@ -38,17 +41,67 @@ Each sensor entry must include:
 - Cost
 - Vendor
 
-The `imageUrl` field is optional but recommended.
+The `imageUrl` field is optional but recommended. The `slug` field is auto-generated for URL-friendly references.
+
+## Automated Synchronization
+
+This repository uses GitHub Actions to automatically sync sensor data from our codec registry:
+
+- **Schedule**: Daily at midnight UTC
+- **Source**: [IoT Community Codec Registry](https://github.com/iotcommunity-space/codec)
+- **Process**: Fetches latest sensor data, generates technical overviews, and updates the directory
+- **Protection**: Manual corrections are preserved using protection mechanisms
+
+### Manual Override System
+
+To protect your manual corrections from being overwritten by automation:
+
+#### Method 1: Manual Edit Flag
+Add `"_manual_edit": true` to any sensor entry you've manually corrected:
+
+```json
+{
+  "Your Sensor Name": {
+    "Description": "Your corrected description",
+    "Communication": "LoRaWAN",
+    "Cost": "Your updated cost",
+    "_manual_edit": true
+  }
+}
+```
+
+#### Method 2: Manual Flag File
+Create a `manual.flag` file in the sensor's assets folder:
+```bash
+touch assets/sensors/vendor-slug/sensor-slug/en/manual.flag
+```
+
+#### Method 3: Manual Overrides File
+Create `assets/manual_overrides.json` for centralized overrides:
+```json
+{
+  "Sensor Name": {
+    "Description": "Your corrected description",
+    "Cost": "Your corrected cost",
+    "custom_notes": "Any additional fields"
+  }
+}
+```
 
 ## Contributing
 
-To add or update sensor information:
+### For New Sensors
+1. Add sensor data to the [IoT Community Codec Registry](https://github.com/iotcommunity-space/codec)
+2. The automation will automatically sync it to this repository within 24 hours
+3. Alternatively, manually add to `sensors.json` following the data structure above
 
+### For Corrections to Existing Sensors
 1. Fork this repository
-2. Create a new branch (`git checkout -b add-new-sensor`)
-3. Modify the `sensors.json` file following the data structure above
-4. Validate your JSON before submitting
-5. Submit a Pull Request
+2. Create a new branch (`git checkout -b fix-sensor-data`)
+3. Modify the `sensors.json` file with your corrections
+4. **Important**: Add `"_manual_edit": true` to protect your changes from automation
+5. Validate your JSON before submitting
+6. Submit a Pull Request
 
 ### Example Entry
 
@@ -62,17 +115,62 @@ To add or update sensor information:
   "Technology": "LoRaWAN End node",
   "Cost": "Affordable",
   "Vendor": "Dragino",
-  "imageUrl": "https://dragino.com/media/k2/items/cache/3abb66d58aa91d2b7b16f08ee38a95c0_L.jpg"
+  "imageUrl": "https://dragino.com/media/k2/items/cache/3abb66d58aa91d2b7b16f08ee38a95c0_L.jpg",
+  "slug": "lht65n-vib-lorawan-vibration-sensor"
 }
+```
+
+## Repository Structure
+
+```
+├── assets/
+│   ├── sensors.json              # Main sensor database
+│   ├── manual_overrides.json     # Manual corrections (optional)
+│   ├── cached_overviews.json     # Cached AI-generated content
+│   └── sensors/                  # Individual sensor documentation
+│       └── vendor-slug/
+│           └── sensor-slug/
+│               └── en/
+│                   ├── overview.md    # Technical overview
+│                   ├── metadata.md5   # Change tracking
+│                   └── manual.flag    # Manual protection (optional)
+├── .github/
+│   ├── workflows/
+│   │   └── sync-sensors.yml      # Automation workflow
+│   └── scripts/
+│       └── sync_sensors.py       # Sync script
+└── README.md
 ```
 
 ## Data Validation
 
-We provide a JSON schema for validating sensor entries. All submissions must pass schema validation before being accepted.
+We provide a JSON schema for validating sensor entries. All submissions must pass schema validation before being accepted. The automation includes built-in validation to ensure data integrity.
 
-## API Access
+## Automation Details
 
-The sensor directory data is available through our REST API at `https://iotCommunity.space/sensors/api`. The API returns data in the same JSON structure as shown above.
+### GitHub Actions Workflow
+- **Trigger**: Daily cron job + manual dispatch
+- **Process**: Fetches codec data, generates overviews, updates sensors.json
+- **Protection**: Preserves manual corrections and existing overview.md files
+- **Logging**: Comprehensive logging for debugging and monitoring
+
+### Environment Variables Required
+- `SENSOR_TOKEN`: GitHub token for repository access
+- `AC_TOKEN`: API key for generating technical overviews
+
+## Troubleshooting
+
+### My Manual Changes Were Overwritten
+1. Check if you added `"_manual_edit": true` to your sensor entry
+2. Verify the automation logs in GitHub Actions
+3. Create a manual.flag file for complete protection
+4. Submit an issue if problems persist
+
+### Sensor Not Updating
+1. Verify the sensor exists in the codec registry
+2. Check if a manual.flag file exists
+3. Review GitHub Actions logs for errors
+4. Ensure the sensor name format matches exactly
 
 ## License
 
@@ -82,7 +180,7 @@ This repository and its contents are licensed under the MIT License. See [LICENS
 
 For questions, suggestions, or support:
 - [Join our Discord Community](https://iotCommunity.space/discord)
-- [Submit an Issue](https://github.com/iotCommunity/sensors/issues)
+- [Submit an Issue](https://github.com/iotcommunity-space/sensors/issues)
 - Email: support@iotCommunity.space
 
 ## Additional Resources
@@ -91,3 +189,4 @@ For more information about the IoT Community and our projects, please visit:
 - [Project About Page](https://iotCommunity.space/about)
 - [Developer Documentation](https://docs.iotCommunity.space)
 - [Community Guidelines](https://iotCommunity.space/guidelines)
+- [Codec Registry](https://github.com/iotcommunity-space/codec) - Source data for sensor information
