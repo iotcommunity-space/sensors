@@ -10537,5 +10537,17 @@
     "Vendor": "Wt Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/WT_Series/WT303_WT304/WT30x.png",
     "slug": "wt-series---wt303-wt304"
+  },
+  "VISION-METERING - Water Module": {
+    "Description": "Codec for VISION-METERING - Water-Module (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "VISION-METERING",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/vision-metering/water-module/v1.0.0/assets/logo.png",
+    "slug": "vision-metering---water-module"
   }
 }
