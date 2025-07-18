@@ -100,7 +100,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adenuis ",
+    "Vendor": "Adenuis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/analog-and-power/v1.0.0/assets/logo.png",
     "slug": "adenuis---analog-and-power"
   },
@@ -115,7 +115,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adenuis ",
+    "Vendor": "Adenuis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/comfort/v1.0.0/assets/logo.png",
     "slug": "adenuis---comfort"
   },
