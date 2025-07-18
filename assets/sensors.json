@@ -100,7 +100,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adeunis ",
+    "Vendor": "Adenuis ",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/analog-and-power/v1.0.0/assets/logo.png",
     "slug": "adenuis---analog-and-power"
   },
@@ -115,7 +115,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adeunis ",
+    "Vendor": "Adenuis ",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/comfort/v1.0.0/assets/logo.png",
     "slug": "adenuis---comfort"
   },
@@ -130,7 +130,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adeunis",
+    "Vendor": "Adenuis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/dry-contacts/v1.0.0/assets/logo.png",
     "slug": "adenuis---dry-contacts"
   },
@@ -145,7 +145,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adeunis",
+    "Vendor": "Adenuis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/lorawan-field-test/v1.0.0/assets/logo.png",
     "slug": "adenuis---lorawan-field-test"
   },
@@ -160,7 +160,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adeunis",
+    "Vendor": "Adenuis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/pulse/v1.0.0/assets/logo.png",
     "slug": "adenuis---pulse"
   },
@@ -175,7 +175,7 @@
     ],
     "Technology": "LoRaWAN End node",
     "Cost": "Affordable",
-    "Vendor": "Adeunis",
+    "Vendor": "Adenuis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/temperature/v1.0.0/assets/logo.png",
     "slug": "adenuis---temperature"
   },
