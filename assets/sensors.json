@@ -102,7 +102,7 @@
     "Cost": "Affordable",
     "Vendor": "Adeunis ",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/analog-and-power/v1.0.0/assets/logo.png",
-    "slug": "adeunis---analog-and-power"
+    "slug": "adenuis---analog-and-power"
   },
   "Adeunis - Comfort": {
     "Description": "Codec for Adeunis - Comfort (v1.0.0).",
@@ -117,7 +117,7 @@
     "Cost": "Affordable",
     "Vendor": "Adeunis ",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/comfort/v1.0.0/assets/logo.png",
-    "slug": "adeunis---comfort"
+    "slug": "adenuis---comfort"
   },
   "Adeunis - Dry Contacts": {
     "Description": "Codec for Adeunis - Dry-Contacts (v1.0.0).",
@@ -132,7 +132,7 @@
     "Cost": "Affordable",
     "Vendor": "Adeunis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/dry-contacts/v1.0.0/assets/logo.png",
-    "slug": "adeunis---dry-contacts"
+    "slug": "adenuis---dry-contacts"
   },
   "Adeunis - Lorawan Field Test": {
     "Description": "Codec for Adeunis - Lorawan-Field-Test (v1.0.0).",
@@ -147,7 +147,7 @@
     "Cost": "Affordable",
     "Vendor": "Adeunis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/lorawan-field-test/v1.0.0/assets/logo.png",
-    "slug": "deunis---lorawan-field-test"
+    "slug": "adenuis---lorawan-field-test"
   },
   "Adeunis - Pulse": {
     "Description": "Codec for Adeunis - Pulse (v1.0.0).",
@@ -162,7 +162,7 @@
     "Cost": "Affordable",
     "Vendor": "Adeunis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/pulse/v1.0.0/assets/logo.png",
-    "slug": "adeunis---pulse"
+    "slug": "adenuis---pulse"
   },
   "Adeunis - Temperature": {
     "Description": "Codec for Adeunis - Temperature (v1.0.0).",
@@ -177,7 +177,7 @@
     "Cost": "Affordable",
     "Vendor": "Adeunis",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/temperature/v1.0.0/assets/logo.png",
-    "slug": "adeunis---temperature"
+    "slug": "adenuis---temperature"
   },
   "ADVANTECH - Wise 2410": {
     "Description": "Codec for ADVANTECH - Wise-2410 (v1.0.0).",
