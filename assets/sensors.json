@@ -8653,5 +8653,17 @@
     "Vendor": "ADENUIS",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/adenuis/temperature/v1.0.0/assets/logo.png",
     "slug": "adenuis---temperature"
+  },
+  "Vs Series - Vs321": {
+    "Description": "Codec for Vs Series - Vs321.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Vs Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/VS_Series/VS321/VS321.png",
+    "slug": "vs-series---vs321"
   }
 }
