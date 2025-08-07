@@ -8665,5 +8665,17 @@
     "Vendor": "Vs Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/VS_Series/VS321/VS321.png",
     "slug": "vs-series---vs321"
+  },
+  "TTN Smart Sensor (Sensus)": {
+    "Description": "Codec for Sensus",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Sensus)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/sensus/iperl.png",
+    "slug": "ttn-smart-sensor-sensus"
   }
 }
