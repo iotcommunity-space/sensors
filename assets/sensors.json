@@ -8677,5 +8677,29 @@
     "Vendor": "TTN Smart Sensor (Sensus)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/sensus/iperl.png",
     "slug": "ttn-smart-sensor-sensus"
+  },
+  "MINEW - Mtb04": {
+    "Description": "Codec for MINEW - Mtb04 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "MINEW",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/minew/mtb04/v1.0.0/assets/logo.png",
+    "slug": "minew---mtb04"
+  },
+  "TTN Smart Sensor (Pallidus)": {
+    "Description": "Codec for Pallidus",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Pallidus)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/pallidus/mr1.png",
+    "slug": "ttn-smart-sensor-pallidus"
   }
 }
