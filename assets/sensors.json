@@ -9613,5 +9613,17 @@
     "Vendor": "Wts-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/wts-series/wts506/wts506.png",
     "slug": "wts-series---wts506"
+  },
+  "DAYTEC - Sigsys": {
+    "Description": "Codec for DAYTEC - Sigsys (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DAYTEC",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/daytec/sigsys/v1.0.0/assets/logo.png",
+    "slug": "daytec---sigsys"
   }
 }
