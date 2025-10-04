@@ -9625,5 +9625,29 @@
     "Vendor": "DAYTEC",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/daytec/sigsys/v1.0.0/assets/logo.png",
     "slug": "daytec---sigsys"
+  },
+  "NETVOX - R718Pb15A": {
+    "Description": "Codec for NETVOX - R718Pb15A (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "NETVOX",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/netvox/r718pb15a/v1.0.0/assets/logo.png",
+    "slug": "netvox---r718pb15a"
+  },
+  "NETVOX - R72632A01": {
+    "Description": "Codec for NETVOX - R72632A01 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "NETVOX",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/netvox/r72632a01/v1.0.0/assets/logo.png",
+    "slug": "netvox---r72632a01"
   }
 }
