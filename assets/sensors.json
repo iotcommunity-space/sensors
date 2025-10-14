@@ -9649,5 +9649,41 @@
     "Vendor": "NETVOX",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/netvox/r72632a01/v1.0.0/assets/logo.png",
     "slug": "netvox---r72632a01"
+  },
+  "TTN Smart Sensor (Digi-International)": {
+    "Description": "Codec for Digi-International",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Digi-International)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/digi-international/digi-xbee-lr.png",
+    "slug": "ttn-smart-sensor-digi-international"
+  },
+  "TTN Smart Sensor (Fencyboy)": {
+    "Description": "Codec for Fencyboy",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Fencyboy)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/fencyboy/fencyboy-v1-3-1_solar_photobox_alpha_large.png",
+    "slug": "ttn-smart-sensor-fencyboy"
+  },
+  "TTN Smart Sensor (Sparkfun)": {
+    "Description": "Codec for Sparkfun",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Sparkfun)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/sparkfun/sparkfun-iot-node.png",
+    "slug": "ttn-smart-sensor-sparkfun"
   }
 }
