@@ -9685,5 +9685,17 @@
     "Vendor": "TTN Smart Sensor (Sparkfun)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/sparkfun/sparkfun-iot-node.png",
     "slug": "ttn-smart-sensor-sparkfun"
+  },
+  "MILESIGHT - Uc500": {
+    "Description": "Codec for MILESIGHT - Uc500 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "MILESIGHT",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/uc500/v1.0.0/assets/logo.png",
+    "slug": "milesight---uc500"
   }
 }
