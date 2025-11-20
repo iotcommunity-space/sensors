@@ -9697,5 +9697,41 @@
     "Vendor": "MILESIGHT",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/uc500/v1.0.0/assets/logo.png",
     "slug": "milesight---uc500"
+  },
+  "BLECON - Custom Blecon": {
+    "Description": "Codec for BLECON - Custom-Blecon (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "BLECON",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/blecon/custom-blecon/v1.0.0/assets/logo.png",
+    "slug": "blecon---custom-blecon"
+  },
+  "BLECON - L02S Bcn": {
+    "Description": "Codec for BLECON - L02S-Bcn (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "BLECON",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/blecon/l02s-bcn/v1.0.0/assets/logo.png",
+    "slug": "blecon---l02s-bcn"
+  },
+  "BLECON - Smart Label": {
+    "Description": "Codec for BLECON - Smart-Label (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "BLECON",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/blecon/smart-label/v1.0.0/assets/logo.png",
+    "slug": "blecon---smart-label"
   }
 }
