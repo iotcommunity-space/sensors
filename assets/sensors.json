@@ -9733,5 +9733,77 @@
     "Vendor": "BLECON",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/blecon/smart-label/v1.0.0/assets/logo.png",
     "slug": "blecon---smart-label"
+  },
+  "DECENTLAB - Dl Atm41G2": {
+    "Description": "Codec for DECENTLAB - Dl-Atm41G2 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DECENTLAB",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-atm41g2/v1.0.0/assets/logo.png",
+    "slug": "decentlab---dl-atm41g2"
+  },
+  "DECENTLAB - Dl Cws2": {
+    "Description": "Codec for DECENTLAB - Dl-Cws2 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DECENTLAB",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-cws2/v1.0.0/assets/logo.png",
+    "slug": "decentlab---dl-cws2"
+  },
+  "DECENTLAB - Dl Ifd": {
+    "Description": "Codec for DECENTLAB - Dl-Ifd (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DECENTLAB",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-ifd/v1.0.0/assets/logo.png",
+    "slug": "decentlab---dl-ifd"
+  },
+  "DECENTLAB - Dl Ilt": {
+    "Description": "Codec for DECENTLAB - Dl-Ilt (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DECENTLAB",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-ilt/v1.0.0/assets/logo.png",
+    "slug": "decentlab---dl-ilt"
+  },
+  "DECENTLAB - Dl Isd": {
+    "Description": "Codec for DECENTLAB - Dl-Isd (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DECENTLAB",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-isd/v1.0.0/assets/logo.png",
+    "slug": "decentlab---dl-isd"
+  },
+  "DECENTLAB - Dl Rad": {
+    "Description": "Codec for DECENTLAB - Dl-Rad (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DECENTLAB",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-rad/v1.0.0/assets/logo.png",
+    "slug": "decentlab---dl-rad"
   }
 }
