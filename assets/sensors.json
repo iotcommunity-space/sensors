@@ -9805,5 +9805,17 @@
     "Vendor": "DECENTLAB",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/decentlab/dl-rad/v1.0.0/assets/logo.png",
     "slug": "decentlab---dl-rad"
+  },
+  "TTN Smart Sensor (Inbiot)": {
+    "Description": "Codec for Inbiot",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Inbiot)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/inbiot/mica-lora-mdb.png",
+    "slug": "ttn-smart-sensor-inbiot"
   }
 }
