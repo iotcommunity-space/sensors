@@ -9817,5 +9817,29 @@
     "Vendor": "TTN Smart Sensor (Inbiot)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/inbiot/mica-lora-mdb.png",
     "slug": "ttn-smart-sensor-inbiot"
+  },
+  "Ts-Series - Ts301-V2": {
+    "Description": "Codec for Ts-Series - Ts301-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ts-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ts-series/ts301-v2/ts301.png",
+    "slug": "ts-series---ts301-v2"
+  },
+  "Ts-Series - Ts302-V2": {
+    "Description": "Codec for Ts-Series - Ts302-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ts-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ts-series/ts302-v2/ts302.png",
+    "slug": "ts-series---ts302-v2"
   }
 }
