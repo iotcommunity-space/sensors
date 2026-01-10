@@ -9841,5 +9841,17 @@
     "Vendor": "Ts-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ts-series/ts302-v2/ts302.png",
     "slug": "ts-series---ts302-v2"
+  },
+  "Wt-Series - Wt401": {
+    "Description": "Codec for Wt-Series - Wt401.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Wt-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/wt-series/wt401/wt401.png",
+    "slug": "wt-series---wt401"
   }
 }
