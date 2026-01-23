@@ -9853,5 +9853,65 @@
     "Vendor": "Wt-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/wt-series/wt401/wt401.png",
     "slug": "wt-series---wt401"
+  },
+  "RADIONODE - Rn172": {
+    "Description": "Codec for RADIONODE - Rn172 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "RADIONODE",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/radionode/rn172/v1.0.0/assets/logo.png",
+    "slug": "radionode---rn172"
+  },
+  "RADIONODE - Rn320 Bth": {
+    "Description": "Codec for RADIONODE - Rn320-Bth (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "RADIONODE",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/radionode/rn320-bth/v1.0.0/assets/logo.png",
+    "slug": "radionode---rn320-bth"
+  },
+  "Am-Series - Am304L": {
+    "Description": "Codec for Am-Series - Am304L.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Am-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/am-series/am304l/am300l.png",
+    "slug": "am-series---am304l"
+  },
+  "Am-Series - Am305L": {
+    "Description": "Codec for Am-Series - Am305L.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Am-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/am-series/am305l/am300l.png",
+    "slug": "am-series---am305l"
+  },
+  "Am-Series - Am319-Hcho-Well": {
+    "Description": "Codec for Am-Series - Am319-Hcho-Well.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Am-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/am-series/am319-hcho-well/am319.png",
+    "slug": "am-series---am319-hcho-well"
   }
 }
