@@ -9913,5 +9913,65 @@
     "Vendor": "Am-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/am-series/am319-hcho-well/am319.png",
     "slug": "am-series---am319-hcho-well"
+  },
+  "Ts-Series - Ts601": {
+    "Description": "Codec for Ts-Series - Ts601.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ts-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ts-series/ts601/ts601.png",
+    "slug": "ts-series---ts601"
+  },
+  "Ts-Series - Ts602": {
+    "Description": "Codec for Ts-Series - Ts602.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ts-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ts-series/ts602/ts602.png",
+    "slug": "ts-series---ts602"
+  },
+  "Ws-Series - Ws501-V4": {
+    "Description": "Codec for Ws-Series - Ws501-V4.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws501-v4/ws501-v4.png",
+    "slug": "ws-series---ws501-v4"
+  },
+  "Ws-Series - Ws502-V4": {
+    "Description": "Codec for Ws-Series - Ws502-V4.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws502-v4/ws502-v4.png",
+    "slug": "ws-series---ws502-v4"
+  },
+  "Ws-Series - Ws503-V4": {
+    "Description": "Codec for Ws-Series - Ws503-V4.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws503-v4/ws503-v4.png",
+    "slug": "ws-series---ws503-v4"
   }
 }
