@@ -9973,5 +9973,17 @@
     "Vendor": "Ws-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws503-v4/ws503-v4.png",
     "slug": "ws-series---ws503-v4"
+  },
+  "ZENMEASURE - Mot G102": {
+    "Description": "Codec for ZENMEASURE - Mot-G102 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "ZENMEASURE",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/zenmeasure/mot-g102/v1.0.0/assets/logo.png",
+    "slug": "zenmeasure---mot-g102"
   }
 }
