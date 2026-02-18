@@ -9985,5 +9985,89 @@
     "Vendor": "ZENMEASURE",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/zenmeasure/mot-g102/v1.0.0/assets/logo.png",
     "slug": "zenmeasure---mot-g102"
+  },
+  "DRAGINO - Dds45 Lb Ls": {
+    "Description": "Codec for DRAGINO - Dds45-Lb-Ls (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DRAGINO",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/dragino/dds45-lb-ls/v1.0.0/assets/logo.png",
+    "slug": "dragino---dds45-lb-ls"
+  },
+  "DRAGINO - Lwl03A": {
+    "Description": "Codec for DRAGINO - Lwl03A (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DRAGINO",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/dragino/lwl03A/v1.0.0/assets/logo.png",
+    "slug": "dragino---lwl03a"
+  },
+  "DRAGINO - Mds120 Lb Ls": {
+    "Description": "Codec for DRAGINO - Mds120-Lb-Ls (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DRAGINO",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/dragino/mds120-lb-ls/v1.0.0/assets/logo.png",
+    "slug": "dragino---mds120-lb-ls"
+  },
+  "DRAGINO - Mds200 Lb Ls": {
+    "Description": "Codec for DRAGINO - Mds200-Lb-Ls (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "DRAGINO",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/dragino/mds200-lb-ls/v1.0.0/assets/logo.png",
+    "slug": "dragino---mds200-lb-ls"
+  },
+  "MILESIGHT - Am308": {
+    "Description": "Codec for MILESIGHT - Am308 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "MILESIGHT",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/am308/v1.0.0/assets/logo.png",
+    "slug": "milesight---am308"
+  },
+  "MILESIGHT - Em300 Cl": {
+    "Description": "Codec for MILESIGHT - Em300-Cl (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "MILESIGHT",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/em300-cl/v1.0.0/assets/logo.png",
+    "slug": "milesight---em300-cl"
+  },
+  "MILESIGHT - Ft101": {
+    "Description": "Codec for MILESIGHT - Ft101 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "MILESIGHT",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/ft101/v1.0.0/assets/logo.png",
+    "slug": "milesight---ft101"
   }
 }
