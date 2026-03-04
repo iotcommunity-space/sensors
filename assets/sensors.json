@@ -10069,5 +10069,17 @@
     "Vendor": "MILESIGHT",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/milesight/ft101/v1.0.0/assets/logo.png",
     "slug": "milesight---ft101"
+  },
+  "Wt-Series - Wt102": {
+    "Description": "Codec for Wt-Series - Wt102.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Wt-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/wt-series/wt102/WT102.png",
+    "slug": "wt-series---wt102"
   }
 }
