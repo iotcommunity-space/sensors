@@ -10081,5 +10081,29 @@
     "Vendor": "Wt-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/wt-series/wt102/WT102.png",
     "slug": "wt-series---wt102"
+  },
+  "Cth-Series - Cth01-Compress": {
+    "Description": "Codec for Cth-Series - Cth01-Compress.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Cth-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/cth-series/cth01-compress/CTH01.png",
+    "slug": "cth-series---cth01-compress"
+  },
+  "Cth-Series - Cth01": {
+    "Description": "Codec for Cth-Series - Cth01.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Cth-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/cth-series/cth01/CTH01.png",
+    "slug": "cth-series---cth01"
   }
 }
