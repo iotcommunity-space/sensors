@@ -10105,5 +10105,17 @@
     "Vendor": "Cth-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/cth-series/cth01/CTH01.png",
     "slug": "cth-series---cth01"
+  },
+  "TTN Smart Sensor (Mikrotik)": {
+    "Description": "Codec for Mikrotik",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Mikrotik)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/mikrotik/tg-lr82.png",
+    "slug": "ttn-smart-sensor-mikrotik"
   }
 }
