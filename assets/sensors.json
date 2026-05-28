@@ -10417,5 +10417,77 @@
     "Vendor": "LANSITEC",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/lansitec/wifi-indoor-bluetooth-gateway/v1.0.0/assets/logo.png",
     "slug": "lansitec---wifi-indoor-bluetooth-gateway"
+  },
+  "Ct-Series - Ct101-V2": {
+    "Description": "Codec for Ct-Series - Ct101-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct101-v2/ct101-2.png",
+    "slug": "ct-series---ct101-v2"
+  },
+  "Ct-Series - Ct103-V2": {
+    "Description": "Codec for Ct-Series - Ct103-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct103-v2/ct103-2.png",
+    "slug": "ct-series---ct103-v2"
+  },
+  "Ct-Series - Ct105-V2": {
+    "Description": "Codec for Ct-Series - Ct105-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct105-v2/ct105.png",
+    "slug": "ct-series---ct105-v2"
+  },
+  "Ct-Series - Ct303-V2": {
+    "Description": "Codec for Ct-Series - Ct303-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct303-v2/ct303.png",
+    "slug": "ct-series---ct303-v2"
+  },
+  "Ct-Series - Ct305-V2": {
+    "Description": "Codec for Ct-Series - Ct305-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct305-v2/ct305.png",
+    "slug": "ct-series---ct305-v2"
+  },
+  "Ct-Series - Ct310-V2": {
+    "Description": "Codec for Ct-Series - Ct310-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ct-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct310-v2/ct310.png",
+    "slug": "ct-series---ct310-v2"
   }
 }
