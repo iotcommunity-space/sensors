@@ -10489,5 +10489,29 @@
     "Vendor": "Ct-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ct-series/ct310-v2/ct310.png",
     "slug": "ct-series---ct310-v2"
+  },
+  "Ws-Series - Ws513-V3": {
+    "Description": "Codec for Ws-Series - Ws513-V3.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws513-v3/ws513.png",
+    "slug": "ws-series---ws513-v3"
+  },
+  "Ws-Series - Ws515-V3": {
+    "Description": "Codec for Ws-Series - Ws515-V3.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Ws-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws515-v3/ws515.png",
+    "slug": "ws-series---ws515-v3"
   }
 }
