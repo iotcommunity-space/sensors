@@ -10513,5 +10513,17 @@
     "Vendor": "Ws-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/ws-series/ws515-v3/ws515.png",
     "slug": "ws-series---ws515-v3"
+  },
+  "LANSITEC - Uwb Badge Tracker": {
+    "Description": "Codec for LANSITEC - Uwb-Badge-Tracker (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "LANSITEC",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/lansitec/uwb-badge-tracker/v1.0.0/assets/logo.png",
+    "slug": "lansitec---uwb-badge-tracker"
   }
 }
