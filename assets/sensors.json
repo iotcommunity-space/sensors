@@ -10537,5 +10537,17 @@
     "Vendor": "Wt-Series",
     "imageUrl": null,
     "slug": "wt-series---wt211"
+  },
+  "TTN Smart Sensor (Advangrid)": {
+    "Description": "Codec for Advangrid",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Advangrid)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/advangrid/gridmate.png",
+    "slug": "ttn-smart-sensor-advangrid"
   }
 }
