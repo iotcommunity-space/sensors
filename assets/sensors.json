@@ -10549,5 +10549,17 @@
     "Vendor": "TTN Smart Sensor (Advangrid)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/advangrid/gridmate.png",
     "slug": "ttn-smart-sensor-advangrid"
+  },
+  "TTN Smart Sensor (Aqualinks)": {
+    "Description": "Codec for Aqualinks",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Aqualinks)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/aqualinks/contador.png",
+    "slug": "ttn-smart-sensor-aqualinks"
   }
 }
