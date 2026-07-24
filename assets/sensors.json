@@ -10705,5 +10705,17 @@
     "Vendor": "SENZEMO",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/senzemo/senstick-stp40/v1.0.0/assets/logo.png",
     "slug": "senzemo---senstick-stp40"
+  },
+  "TTN Smart Sensor (Safora)": {
+    "Description": "Codec for Safora",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Safora)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/safora/fence-shield-photo.png",
+    "slug": "ttn-smart-sensor-safora"
   }
 }
