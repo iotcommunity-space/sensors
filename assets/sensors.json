@@ -10717,5 +10717,17 @@
     "Vendor": "TTN Smart Sensor (Safora)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/safora/fence-shield-photo.png",
     "slug": "ttn-smart-sensor-safora"
+  },
+  "Em-Series - Em320-Th-V2": {
+    "Description": "Codec for Em-Series - Em320-Th-V2.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Em-Series",
+    "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/em-series/em320-th-v2/em320-th.png",
+    "slug": "em-series---em320-th-v2"
   }
 }
