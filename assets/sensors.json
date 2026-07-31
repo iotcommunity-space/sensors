@@ -10729,5 +10729,17 @@
     "Vendor": "Em-Series",
     "imageUrl": "https://raw.githubusercontent.com/Milesight-IoT/SensorDecoders/main/em-series/em320-th-v2/em320-th.png",
     "slug": "em-series---em320-th-v2"
+  },
+  "Em-Series - Em411-Rdl": {
+    "Description": "Codec for Em-Series - Em411-Rdl.",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "Em-Series",
+    "imageUrl": null,
+    "slug": "em-series---em411-rdl"
   }
 }
