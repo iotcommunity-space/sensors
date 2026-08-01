@@ -10741,5 +10741,17 @@
     "Vendor": "Em-Series",
     "imageUrl": null,
     "slug": "em-series---em411-rdl"
+  },
+  "PARTICLE - Custom Particle": {
+    "Description": "Codec for PARTICLE - Custom-Particle (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "PARTICLE",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/particle/custom-particle/v1.0.0/assets/logo.png",
+    "slug": "particle---custom-particle"
   }
 }
