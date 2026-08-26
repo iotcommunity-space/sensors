@@ -10765,5 +10765,17 @@
     "Vendor": "PARTICLE",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/particle/tracker-one/v1.0.0/assets/logo.png",
     "slug": "particle---tracker-one"
+  },
+  "INHAND-NETWORKS - Ig502": {
+    "Description": "Codec for INHAND-NETWORKS - Ig502 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "INHAND-NETWORKS",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/inhand-networks/IG502/v1.0.0/assets/logo.png",
+    "slug": "inhand-networks---ig502"
   }
 }
