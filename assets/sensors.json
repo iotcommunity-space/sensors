@@ -10801,5 +10801,17 @@
     "Vendor": "HUBBLE",
     "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/hubble/custom-hubble/v1.0.0/assets/logo.png",
     "slug": "hubble---custom-hubble"
+  },
+  "TTN Smart Sensor (Option)": {
+    "Description": "Codec for Option",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Option)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/option/cloudgate-probe.png",
+    "slug": "ttn-smart-sensor-option"
   }
 }
