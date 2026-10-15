@@ -10813,5 +10813,17 @@
     "Vendor": "TTN Smart Sensor (Option)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/option/cloudgate-probe.png",
     "slug": "ttn-smart-sensor-option"
+  },
+  "TTN Smart Sensor (Iotci)": {
+    "Description": "Codec for Iotci",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "TTN Smart Sensor (Iotci)",
+    "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/iotci/iotci-logo.png",
+    "slug": "ttn-smart-sensor-iotci"
   }
 }
