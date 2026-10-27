@@ -10825,5 +10825,17 @@
     "Vendor": "TTN Smart Sensor (Iotci)",
     "imageUrl": "https://raw.githubusercontent.com/TheThingsNetwork/lorawan-devices/master/vendor/iotci/iotci-logo.png",
     "slug": "ttn-smart-sensor-iotci"
+  },
+  "SENZEMO - Senstick Sam20": {
+    "Description": "Codec for SENZEMO - Senstick-Sam20 (v1.0.0).",
+    "Communication": "Unknown",
+    "Applications": [],
+    "Environmental Compatibility": "Unknown",
+    "Data Formats": [],
+    "Technology": "Unknown",
+    "Cost": "Unknown",
+    "Vendor": "SENZEMO",
+    "imageUrl": "https://raw.githubusercontent.com/iotcommunity-space/codec/refs/heads/main/assets/codecs/senzemo/senstick-sam20/v1.0.0/assets/logo.png",
+    "slug": "senzemo---senstick-sam20"
   }
 }
